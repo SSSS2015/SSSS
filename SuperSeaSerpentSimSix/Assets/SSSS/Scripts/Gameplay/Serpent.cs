@@ -38,9 +38,27 @@ public class Serpent : SerpentSegment {
 	public SerpentSegment CreateSegment(GameObject prefab, GameObject attachTarget)
 	{
 		GameObject segmentObj = Instantiate(prefab, attachTarget.transform.position, attachTarget.transform.rotation) as GameObject;
+		segmentObj.transform.parent = World.Instance.transform;
 		SerpentSegment segment = segmentObj.GetComponent<SerpentSegment>();
 		segment.AttachTo(attachTarget);
 		return segment;
+	}
+
+	[ContextMenu("Add Segment")]
+	public void AddSegment()
+	{
+		AddSegment(mSegmentPrefab);
+	}
+
+	public void AddSegment(GameObject prefab)
+	{
+		LinkedListNode<SerpentSegment> tailNode = mSegments.Last;
+		LinkedListNode<SerpentSegment> prevNode = tailNode.Previous;
+
+		SerpentSegment segment = CreateSegment(prefab, prevNode.Value.gameObject);
+		tailNode.Value.AttachTo(segment.gameObject);
+
+		mSegments.AddBefore(tailNode, segment);
 	}
 
 	public void FixedUpdate()
@@ -67,7 +85,7 @@ public class Serpent : SerpentSegment {
 
 				Vector3 finalDir = Vector3.RotateTowards(currDir, desiredDir, mMaxTurnAngle, float.MaxValue);
 
-				if(currSpeed > 0.1f)
+				if(distFromDesiredPos > 0.1f)
 				{
 					mUndulationTimer += Time.deltaTime;
 					Vector3 cross = Vector3.Cross(Camera.main.transform.forward, finalDir);
