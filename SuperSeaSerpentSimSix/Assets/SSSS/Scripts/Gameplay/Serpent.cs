@@ -3,11 +3,13 @@ using System.Collections.Generic;
 
 public class Serpent : SerpentSegment {
 
+	public static readonly Vector3 kSegmentGrowthScale = new Vector3(1.25f, 1.25f, 1.25f);
+
 	public float mSpeedMultiplier = 2.0f;
 	public float mGravityAcceleration = 9.8f;
 
 	public float mMaxTurnAngle = Mathf.PI*0.5f;
-	//public float mMaxAcceleration = 1.0f;
+	public float mMaxAcceleration = 10.0f;
 
 	public int mNumInitialSegments = 3;
 
@@ -21,6 +23,16 @@ public class Serpent : SerpentSegment {
 	public float mUndulationForce = 10.0f;
 	public float mUndulationTime = 1.0f;
 	protected float mUndulationTimer = 0.0f; 
+
+	public float mSegmentGrowthProgressTime = 0.5f;
+	protected float mSegmentGrowthProgressTimer = 0.0f;
+
+	public class SegmentGrowth
+	{
+		public LinkedListNode<SerpentSegment> mCurrentSegment;
+		public GameObject mSegmentPrefab;
+	}
+	public HashSet<SegmentGrowth> mSegmentGrowths = new HashSet<SegmentGrowth>();
 
 	public void Start()
 	{
@@ -45,6 +57,45 @@ public class Serpent : SerpentSegment {
 	}
 
 	[ContextMenu("Add Segment")]
+	public void GrowSegment(GameObject prefab)
+	{
+		SegmentGrowth growth = new SegmentGrowth();
+		growth.mSegmentPrefab = prefab;
+		growth.mCurrentSegment = mSegments.First;
+		growth.mCurrentSegment.Value.transform.localScale = kSegmentGrowthScale;
+
+		mSegmentGrowths.Add(growth);
+	}
+
+	public void ProgressSegmentGrowth()
+	{
+		if(mSegmentGrowths.Count <= 0)
+		{
+			return;
+		}
+
+		HashSet<SegmentGrowth> completedGrowths = new HashSet<SegmentGrowth>();
+		foreach(var growth in mSegmentGrowths)
+		{
+			growth.mCurrentSegment.Value.transform.localScale = Vector3.one;
+			growth.mCurrentSegment = growth.mCurrentSegment.Next;
+			if(growth.mCurrentSegment == mSegments.Last)
+			{
+				AddSegment(growth.mSegmentPrefab);
+				completedGrowths.Add(growth);
+			}
+			else
+			{
+				growth.mCurrentSegment.Value.transform.localScale = kSegmentGrowthScale;
+			}
+		}
+
+		foreach(var growth in completedGrowths)
+		{
+			mSegmentGrowths.Remove(growth);
+		}
+	}
+
 	public void AddSegment()
 	{
 		AddSegment(mSegmentPrefab);
@@ -61,6 +112,16 @@ public class Serpent : SerpentSegment {
 		mSegments.AddBefore(tailNode, segment);
 	}
 
+	public void Update()
+	{
+		mSegmentGrowthProgressTimer += Time.deltaTime;
+		if(mSegmentGrowthProgressTimer >= mSegmentGrowthProgressTime)
+		{
+			mSegmentGrowthProgressTimer -= mSegmentGrowthProgressTime;
+			ProgressSegmentGrowth();
+		}
+	}
+
 	public void FixedUpdate()
 	{
 		bool isAboveWater = transform.localPosition.magnitude >= World.Instance.SeaLevel;
@@ -75,7 +136,7 @@ public class Serpent : SerpentSegment {
 		{
 			Vector3 desiredDir = mDesiredPos - transform.position;
 			float distFromDesiredPos = desiredDir.magnitude;
-			if(distFromDesiredPos > 0)
+			if(distFromDesiredPos > 0.1f)
 			{
 				desiredDir.Normalize ();
 				//Vector3 desiredVel = desiredDir * mSpeedMultiplier;// * Time.deltaTime;
@@ -85,17 +146,16 @@ public class Serpent : SerpentSegment {
 
 				Vector3 finalDir = Vector3.RotateTowards(currDir, desiredDir, mMaxTurnAngle, float.MaxValue);
 
-				if(distFromDesiredPos > 0.1f)
-				{
-					mUndulationTimer += Time.deltaTime;
-					Vector3 cross = Vector3.Cross(Camera.main.transform.forward, finalDir);
-					cross.Normalize();
-					float undulation = Mathf.Sin(Mathf.PI*1.5f*mUndulationTimer);
-					finalDir += cross*undulation*0.25f;
-				}
+				mUndulationTimer += Time.deltaTime;
+				Vector3 cross = Vector3.Cross(Camera.main.transform.forward, finalDir);
+				cross.Normalize();
+				float undulationSpeedFactor = Mathf.Clamp01(currSpeed/20.0f);
+				float undulationPeriod = Mathf.PI*1.5f;// * (undulationSpeedFactor);
+				float undulation = Mathf.Sin(undulationPeriod*mUndulationTimer);
+				finalDir += cross*undulation*0.25f;
 
 				Vector3 desiredVel = finalDir * distFromDesiredPos * mSpeedMultiplier;// * Time.deltaTime;
-				Vector3.SmoothDamp(vel, desiredVel, ref vel, 1.0f, float.MaxValue, Time.deltaTime);
+				Vector3.SmoothDamp(vel, desiredVel, ref vel, 1.0f, mMaxAcceleration, Time.deltaTime);
 				//mRigidbody.velocity = Vector3.RotateTowards(mRigidbody.velocity, desiredVel, mMaxTurnAngle, mMaxAcceleration*Time.deltaTime);
 				//mRigidbody.AddForce(vel, ForceMode.VelocityChange);
 
@@ -121,5 +181,15 @@ public class Serpent : SerpentSegment {
 	public void MoveToward(Vector3 worldPos)
 	{
 		mDesiredPos = worldPos;
+	}
+
+	public void OnTriggerEnter(Collider c)
+	{
+		Fish fish = c.GetComponentInParent<Fish>();
+		if(fish != null)
+		{
+			GrowSegment(mSegmentPrefab);
+			Destroy(fish.gameObject);
+		}
 	}
 }
