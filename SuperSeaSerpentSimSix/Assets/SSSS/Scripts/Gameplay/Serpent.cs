@@ -1,25 +1,51 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
-public class Serpent : MonoBehaviour {
+public class Serpent : SerpentSegment {
 
 	public float mSpeedMultiplier = 2.0f;
 	public float mGravityAcceleration = 9.8f;
 
-	protected Vector3 mDesiredPos;
-	protected Rigidbody mRigidbody;
+	public int mNumInitialSegments = 3;
 
-	public void Awake()
-	{
-		if(mRigidbody == null)
-		{
-			mRigidbody = GetComponent<Rigidbody>();
-		}
-	}
+	public GameObject mSegmentPrefab;
+	public GameObject mTailPrefab;
+
+	protected Vector3 mDesiredPos;
+
+	protected LinkedList<SerpentSegment> mSegments = new LinkedList<SerpentSegment>();
 
 	public void Start()
 	{
 		mDesiredPos = transform.position;
+
+		GameObject attachTarget = gameObject;
+		for(int i = 0; i < mNumInitialSegments; ++i)
+		{
+			SerpentSegment segment = CreateSegment((i != mNumInitialSegments-1)?mSegmentPrefab:mTailPrefab, attachTarget);
+			attachTarget = segment.gameObject;
+			mSegments.AddLast(new LinkedListNode<SerpentSegment>(segment));
+		}
+	}
+
+	public SerpentSegment CreateSegment(GameObject prefab, GameObject attachTarget)
+	{
+		GameObject segmentObj = Instantiate(prefab, attachTarget.transform.position, attachTarget.transform.rotation) as GameObject;
+		SerpentSegment segment = segmentObj.GetComponent<SerpentSegment>();
+		segment.AttachTo(attachTarget);
+		return segment;
+	}
+
+	public void Update()
+	{
+		//mHeadModel.transform.LookAt(mDesiredPos);
+		transform.LookAt(mDesiredPos);
+		/*
+		foreach(var segment in mSegments)
+		{
+			segment.mRigidbody.AddForce(mRigidbody.velocity * 0.5f);
+		}
+		*/
 	}
 
 	public void FixedUpdate()
