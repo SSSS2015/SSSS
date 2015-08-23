@@ -196,6 +196,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.10000002
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 72f09f0f73f6a4b06b43235ffeb9ccfe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72f09f0f73f6a4b06b43235ffeb9ccfe, type: 3}
   m_IsPrefabParent: 0
@@ -705,7 +709,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490998, guid: dc5b74681dc996748a46dc196ee80094, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 490998, guid: dc5b74681dc996748a46dc196ee80094, type: 2}
       propertyPath: m_LocalRotation.z
@@ -713,7 +717,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490998, guid: dc5b74681dc996748a46dc196ee80094, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: .707106709
       objectReference: {fileID: 0}
     - target: {fileID: 490998, guid: dc5b74681dc996748a46dc196ee80094, type: 2}
       propertyPath: m_RootOrder
