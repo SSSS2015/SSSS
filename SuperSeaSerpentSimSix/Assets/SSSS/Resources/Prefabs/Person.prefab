@@ -189,7 +189,7 @@ MonoBehaviour:
   mAttackRange: 10
   mTellOffset: .300000012
   mAttackTellTime: 2
-  mMinTimeBetweenAttacks: 2
+  mMinTimeBetweenAttacks: 1
   mMaxTimeBetweenAttacks: 4
   mProjectilePrefab: {fileID: 178848, guid: fdae322ffc0e7fd4886fa7529d1867d4, type: 2}
   mHand: {fileID: 496280}
@@ -242,7 +242,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: mMinTimeBetweenAttacks
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: mMaxTimeBetweenAttacks

@@ -47,6 +47,15 @@ public class BaseProjectile : MonoBehaviour, IDamaging {
 		Destroy(gameObject, mLifeTime);
 	}
 
+	public void Drop()
+	{
+		transform.parent = null;
+
+		mRigidbody.isKinematic = false;
+		mRigidbody.detectCollisions = false;
+		Destroy(gameObject, mLifeTime*0.5f);
+	}
+
 	public void ApplyDamage(Serpent target)
 	{
 		target.TakeDamage(mDamagePower);

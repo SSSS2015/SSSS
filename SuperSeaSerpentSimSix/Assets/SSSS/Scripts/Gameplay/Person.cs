@@ -54,6 +54,7 @@ public class Person : MonoBehaviour, IEatable {
 		if(!mBuoyancy.IsAboveWater())
 		{
 			mIsDrowning = true;
+			DropProjectile();
 			return;
 		}
 		
@@ -104,7 +105,7 @@ public class Person : MonoBehaviour, IEatable {
 
 	public void ReadyProjectile()
 	{
-		Debug.Log("Readying Projectile");
+		//Debug.Log("Readying Projectile");
 		mHand.localPosition = mOriginalHandPos;
 		GameObject obj = Instantiate(mProjectilePrefab, mHand.position, mHand.rotation) as GameObject;
 		mCurrentProjectile = obj.GetComponent<BaseProjectile>();
@@ -115,8 +116,17 @@ public class Person : MonoBehaviour, IEatable {
 
 	public void FireProjectileAt(Vector3 pos)
 	{
-		Debug.Log("Firing Projectile");
+		//Debug.Log("Firing Projectile");
 		mCurrentProjectile.LaunchToward(pos);
+		mCurrentProjectile = null;
+	}
+
+	public void DropProjectile()
+	{
+		if(mCurrentProjectile != null)
+		{
+			mCurrentProjectile.Drop();
+		}
 		mCurrentProjectile = null;
 	}
 
