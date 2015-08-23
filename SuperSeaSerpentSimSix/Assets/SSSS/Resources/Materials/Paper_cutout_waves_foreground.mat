@@ -24,17 +24,17 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _WaveDisplacementTexture
-        second:
-          m_Texture: {fileID: 2800000, guid: 4f6bb8db6ea3442b0a7d292a95599904, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _PaperTexture
         second:
           m_Texture: {fileID: 2800000, guid: c41835ebb036b4b42b50f7dcc34d000f, type: 3}
           m_Scale: {x: 1, y: 2}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _WaveDisplacementTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: 4f6bb8db6ea3442b0a7d292a95599904, type: 3}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -61,12 +61,12 @@ Material:
         second: 1.77999997
       data:
         first:
-          name: _UV_Tiling
-        second: 124
-      data:
-        first:
           name: _Offset
         second: .0829999968
+      data:
+        first:
+          name: _UV_Tiling
+        second: 196
       data:
         first:
           name: _node_7070
