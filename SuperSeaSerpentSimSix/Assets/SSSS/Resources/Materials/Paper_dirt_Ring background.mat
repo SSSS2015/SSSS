@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Paper_dirt_Ring background
-  m_Shader: {fileID: 4800000, guid: 00841b4728e7349ba845de82ce041ed6, type: 3}
+  m_Shader: {fileID: 4800000, guid: 785c0eded370344c193d791c7bd0284b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -19,7 +19,7 @@ Material:
         first:
           name: _DirtTexture
         second:
-          m_Texture: {fileID: 2800000, guid: 30a5a7b6e8bce4e9bba487181f6b6de6, type: 3}
+          m_Texture: {fileID: 2800000, guid: c41835ebb036b4b42b50f7dcc34d000f, type: 3}
           m_Scale: {x: 20, y: 20}
           m_Offset: {x: 0, y: 0}
     m_Floats: {}

@@ -62,8 +62,7 @@ Shader "SeaSerpent/PaperCutoutWaves" {
 /////// Vectors:
 ////// Lighting:
                 float4 node_9276 = _Time + _TimeEditor;
-                float node_6151 = sin((i.posWorld.r*0.005));
-                float2 node_8698 = (float2((_UV_Tiling*i.uv0.r),i.uv0.g)+sin(((_Offset+node_9276.g)*_TimeScale*(node_6151*0.04999998+1.0)))*float2(0.1,0));
+                float2 node_8698 = (float2((_UV_Tiling*i.uv0.r),i.uv0.g)+sin(((_Offset+node_9276.g)*_TimeScale*(sin((i.posWorld.r*0.005))*0.04999998+1.0)))*float2(0.1,0));
                 float4 _Texture_with_alpha_var = tex2D(_Texture_with_alpha,TRANSFORM_TEX(node_8698, _Texture_with_alpha));
                 float4 _PaperTexture_var = tex2D(_PaperTexture,TRANSFORM_TEX(node_8698, _PaperTexture));
                 float node_4483 = 37.0; // Fog End
