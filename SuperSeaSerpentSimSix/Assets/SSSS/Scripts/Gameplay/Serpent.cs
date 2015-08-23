@@ -34,6 +34,11 @@ public class Serpent : SerpentSegment {
 	public int Health { get { return mHealth; } }
 	public int MaxHealth { get { return mSegments.Count; } }
 
+	protected int mNextGrowthNeed = 1;
+	public int NextGrowthNeed { get { return mNextGrowthNeed; } }
+	protected int mNextGrowthCounter = 0;
+	public int NextGrowthCounter { get { return mNextGrowthCounter; } }
+
 	public class SegmentGrowth
 	{
 		public LinkedListNode<SerpentSegment> mCurrentSegment;
@@ -97,7 +102,13 @@ public class Serpent : SerpentSegment {
 			{
 				if(growth.mSegmentPrefab != null)
 				{
-					AddSegment(growth.mSegmentPrefab);
+					++mNextGrowthCounter;
+					if(mNextGrowthCounter >= mNextGrowthNeed)
+					{
+						AddSegment(growth.mSegmentPrefab);
+						mNextGrowthCounter = 0;
+						mNextGrowthNeed = mNextGrowthNeed*2;
+					}
 				}
 				Heal(growth.mHealAmount);
 				completedGrowths.Add(growth);

@@ -133,6 +133,7 @@ public class Person : MonoBehaviour, IEatable {
 	public void BeEaten(Serpent eater)
 	{
 		eater.GrowSegment();
+		World.Instance.mScoreManager.AddScore(100);
 		Destroy(gameObject);
 	}
 }

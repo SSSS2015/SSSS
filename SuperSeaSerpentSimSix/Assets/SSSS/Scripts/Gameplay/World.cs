@@ -24,6 +24,8 @@ public class World : MonoBehaviour {
 	public GameObject mBoatPrefab;
 	public GameObject mPersonPrefab;
 
+	public ScoreManager mScoreManager = new ScoreManager();
+
 	public void Awake()
 	{
 		if(sInstance != null)

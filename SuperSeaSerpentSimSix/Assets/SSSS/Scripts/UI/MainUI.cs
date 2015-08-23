@@ -4,21 +4,37 @@ using System.Collections;
 
 public class MainUI : MonoBehaviour {
 	public Text mHealthText;
-	protected int mDisplayHealth = 0;
+	protected int mDisplayHealth = -1;
 
-	protected Serpent mSerpent;
+	public Text mScoreText;
+	protected int mScoreDisplay = -1;
+
+	public Text mNexSegmentText;
+	protected int mDisplayNextSegment = -1;
+
+	protected World mWorld;
 
 	public void Start()
 	{
-		mSerpent = World.Instance.mSerpent;
+		mWorld = World.Instance;
 	}
 
 	public void Update()
 	{
-		if(mSerpent.Health != mDisplayHealth)
+		if(mWorld.mSerpent.Health != mDisplayHealth)
 		{
-			mDisplayHealth = mSerpent.Health;
-			mHealthText.text = string.Format("Health: {0}/{1}", mDisplayHealth, mSerpent.MaxHealth);
+			mDisplayHealth = mWorld.mSerpent.Health;
+			mHealthText.text = string.Format("Health: {0}/{1}", mDisplayHealth, mWorld.mSerpent.MaxHealth);
+		}
+		if(mWorld.mScoreManager.Score != mScoreDisplay)
+		{
+			mScoreDisplay = mWorld.mScoreManager.Score;
+			mScoreText.text = string.Format("Score: {0}", mScoreDisplay);
+		}
+		if(mWorld.mSerpent.NextGrowthCounter != mDisplayNextSegment)
+		{
+			mDisplayNextSegment = mWorld.mSerpent.NextGrowthCounter;
+			mNexSegmentText.text = string.Format("Next Segment: {0}/{1}", mWorld.mSerpent.NextGrowthCounter, mWorld.mSerpent.NextGrowthNeed);
 		}
 	}
 }

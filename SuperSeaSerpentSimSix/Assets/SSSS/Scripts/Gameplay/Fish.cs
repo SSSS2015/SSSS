@@ -6,6 +6,7 @@ public class Fish : BaseSeaCreature, IEatable {
 	{
 		// heal the serpent
 		eater.Digest();
+		World.Instance.mScoreManager.AddScore(10);
 		Destroy(gameObject);
 	}
 }

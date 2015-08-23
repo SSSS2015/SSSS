@@ -42,7 +42,7 @@ MonoBehaviour:
   WavePrefab: {fileID: 114026, guid: 650004a8e80280b45b06a7a3cbde2213, type: 2}
   Player: {fileID: 0}
   ForceDist: 4
-  ForcePower: .000500000024
+  ForcePower: .00100000005
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
