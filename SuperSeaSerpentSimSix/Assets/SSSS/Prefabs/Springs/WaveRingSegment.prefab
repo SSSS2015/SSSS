@@ -76,7 +76,7 @@ MonoBehaviour:
   kSpringForceVert: .00499999989
   kSpringForceDiag: .00100000005
   kSpringForceOrigin: 9.99999975e-05
-  kDamping: .995000005
+  kDamping: .998000026
   Theta: 0
   LeftGrid: {fileID: 0}
   RightGrid: {fileID: 0}
@@ -105,7 +105,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: f869f365f5ba87049a70d5f433f86b0b, type: 2}
     - target: {fileID: 0}
       propertyPath: kDamping
-      value: .995000005
+      value: .998000026
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

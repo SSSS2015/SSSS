@@ -8,7 +8,7 @@ public class WaveManager : MonoBehaviour
     const int kNumSegments = 360 / 20;
 
     public GameObject WavePrefab;
-    public GameObject Player;
+    public Rigidbody Player;
     public float ForceDist = 3.0f;
     public float ForcePower = 1.0f;
 
@@ -71,7 +71,8 @@ public class WaveManager : MonoBehaviour
                 SpringGrid grid = Grids[i];
                 if (grid.InBounds(playerPos, ForceDist))
                 {
-                    grid.AddOutwardForce(new Vector2(playerPos.x, playerPos.y), ForceDist, ForcePower);
+                    float speed = Player.velocity.magnitude * (1.0f / 10.0f); // 10.0f = player max speed
+                    grid.AddOutwardForce(new Vector2(playerPos.x, playerPos.y), ForceDist * speed, ForcePower * speed);
                 }
             }
         }
