@@ -25,8 +25,8 @@ public class SerpentController : MonoBehaviour {
 	public void Update () {
 
 		Vector3 mousePos = Input.mousePosition;
-		if(mScreenArea.Contains(mousePos))
-		{
+		//if(mScreenArea.Contains(mousePos))
+		//{
 			Ray camRay = Camera.main.ScreenPointToRay(mousePos);
 			float dist;
 			if(mControlPlane.Raycast(camRay, out dist))
@@ -34,7 +34,7 @@ public class SerpentController : MonoBehaviour {
 				Vector3 desiredPos = camRay.GetPoint(dist);
 				mSerpent.MoveToward(desiredPos);
 			}
-		}
+		//}
 		/*
 		Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 		float dist;

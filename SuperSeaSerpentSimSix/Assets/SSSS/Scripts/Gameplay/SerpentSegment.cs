@@ -5,6 +5,8 @@ public class SerpentSegment : MonoBehaviour {
 	public Joint mJoint;
 	public Rigidbody mRigidbody;
 
+	public GameObject mModel;
+
 	public void Awake()
 	{
 		if(mJoint == null)

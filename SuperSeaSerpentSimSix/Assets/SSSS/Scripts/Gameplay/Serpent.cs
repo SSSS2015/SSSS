@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Serpent : SerpentSegment {
 
-	public static readonly Vector3 kSegmentGrowthScale = new Vector3(1.5f, 1.5f, 1.5f);
+	public static readonly Vector3 kSegmentGrowthScale = new Vector3(1.75f, 1.75f, 1.75f);
 
 	public float mSpeedMultiplier = 2.0f;
 	public float mGravityAcceleration = 9.8f;
@@ -92,10 +92,10 @@ public class Serpent : SerpentSegment {
 		foreach(var growth in mSegmentGrowths)
 		{
 			float t = Mathf.Clamp01(mSegmentGrowthProgressTimer/mSegmentGrowthProgressTime);
-			growth.mCurrentSegment.Value.transform.localScale = Vector3.Lerp(kSegmentGrowthScale, Vector3.one, t);
+			growth.mCurrentSegment.Value.mModel.transform.localScale = Vector3.Lerp(kSegmentGrowthScale, Vector3.one, t);
 			if(growth.mCurrentSegment.Next != mSegments.Last)
 			{
-				growth.mCurrentSegment.Next.Value.transform.localScale = Vector3.Lerp(Vector3.one, kSegmentGrowthScale, t);
+				growth.mCurrentSegment.Next.Value.mModel.transform.localScale = Vector3.Lerp(Vector3.one, kSegmentGrowthScale, t);
 			}
 		}
 	}
@@ -111,6 +111,7 @@ public class Serpent : SerpentSegment {
 		LinkedListNode<SerpentSegment> prevNode = tailNode.Previous;
 
 		SerpentSegment segment = CreateSegment(prefab, prevNode.Value.gameObject);
+		segment.mModel.transform.localScale = new Vector3(0.85f, 0.85f, 0.85f);
 		tailNode.Value.AttachTo(segment.gameObject);
 
 		mSegments.AddBefore(tailNode, segment);
@@ -178,7 +179,6 @@ public class Serpent : SerpentSegment {
 				//mRigidbody.velocity = Vector3.RotateTowards(mRigidbody.velocity, desiredVel, mMaxTurnAngle, mMaxAcceleration*Time.deltaTime);
 				//mRigidbody.AddForce(vel, ForceMode.VelocityChange);
 
-
 				/*
 				if(mUndulationTimer >= mUndulationTime)
 				{
@@ -191,9 +191,24 @@ public class Serpent : SerpentSegment {
 			}
 		}
 
+		UpdateLooking();
+	}
+
+	protected void UpdateLooking()
+	{
 		if(mRigidbody.velocity.sqrMagnitude > 0)
 		{
-			transform.LookAt(mRigidbody.position+mRigidbody.velocity);
+			transform.LookAt(mRigidbody.position+mRigidbody.velocity, transform.position.normalized);
+			/*
+			Vector3 lookDir = mRigidbody.position+mRigidbody.velocity;
+			lookDir -= transform.position;
+			lookDir.Normalize();
+			float deltaAngle = Vector3.Angle(transform.forward, lookDir);
+			
+			Vector3 cross = Vector3.Cross(Camera.main.transform.forward, transform.forward);
+			float rotationDir = Mathf.Sign(Vector3.Dot(cross, lookDir));
+			transform.Rotate(new Vector3(deltaAngle*rotationDir,0,0));
+			*/
 		}
 	}
 	
