@@ -21,12 +21,18 @@ public class Serpent : SerpentSegment {
 
 	protected LinkedList<SerpentSegment> mSegments = new LinkedList<SerpentSegment>();
 
+	public float mAttackForce = 30.0f;
+
 	public float mUndulationForce = 10.0f;
 	public float mUndulationTime = 1.0f;
 	protected float mUndulationTimer = 0.0f; 
 
 	public float mSegmentGrowthProgressTime = 0.5f;
 	protected float mSegmentGrowthProgressTimer = 0.0f;
+
+	protected int mHealth = 0;
+	public int Health { get { return mHealth; } }
+	public int MaxHealth { get { return mSegments.Count; } }
 
 	public class SegmentGrowth
 	{
@@ -46,9 +52,11 @@ public class Serpent : SerpentSegment {
 			attachTarget = segment.gameObject;
 			mSegments.AddLast(new LinkedListNode<SerpentSegment>(segment));
 		}
+
+		mHealth = mNumInitialSegments;
 	}
 
-	public SerpentSegment CreateSegment(GameObject prefab, GameObject attachTarget)
+	protected SerpentSegment CreateSegment(GameObject prefab, GameObject attachTarget)
 	{
 		GameObject segmentObj = Instantiate(prefab, attachTarget.transform.position, attachTarget.transform.rotation) as GameObject;
 		segmentObj.transform.parent = World.Instance.transform;
@@ -57,7 +65,11 @@ public class Serpent : SerpentSegment {
 		return segment;
 	}
 
-	[ContextMenu("Add Segment")]
+	public void GrowSegment()
+	{
+		GrowSegment(mSegmentPrefab);
+	}
+
 	public void GrowSegment(GameObject prefab)
 	{
 		SegmentGrowth growth = new SegmentGrowth();
@@ -67,7 +79,7 @@ public class Serpent : SerpentSegment {
 		mSegmentGrowths.Add(growth);
 	}
 
-	public void ProgressSegmentGrowth()
+	protected void ProgressSegmentGrowth()
 	{
 		HashSet<SegmentGrowth> completedGrowths = new HashSet<SegmentGrowth>();
 		foreach(var growth in mSegmentGrowths)
@@ -86,7 +98,7 @@ public class Serpent : SerpentSegment {
 		}
 	}
 
-	public void UpdateSegmentGrowthSizes()
+	protected void UpdateSegmentGrowthSizes()
 	{
 		foreach(var growth in mSegmentGrowths)
 		{
@@ -141,7 +153,7 @@ public class Serpent : SerpentSegment {
 			mReentryInputBlockerTimer = mReentryInputBlockerTime;
 		}
 
-		if(mReentryInputBlockerTimer > 0)
+		if(mReentryInputBlockerTimer > 0 || mHealth <= 0)
 		{
 			mReentryInputBlockerTimer -= Time.deltaTime;
 			ApplyGravity();
@@ -201,13 +213,31 @@ public class Serpent : SerpentSegment {
 		mDesiredPos = worldPos;
 	}
 
+	public void Attack(Vector3 worldPos)
+	{
+		Vector3 desiredDir = worldPos - transform.position;
+		desiredDir.Normalize();
+		mRigidbody.AddForce(desiredDir*mAttackForce, ForceMode.Impulse);
+	}
+
+	public void TakeDamage(int damageAmount)
+	{
+		mHealth -= damageAmount;
+		if(mHealth <= 0)
+		{
+			mHealth = 0;
+			// Death
+		}
+	}
+
 	public void OnCollisionEnter(Collision c)
 	{
-		Eatable eatable = c.collider.GetComponentInParent<Eatable>();
+		IEatable eatable = c.collider.GetComponentInParent(typeof(IEatable)) as IEatable;
 		if(eatable != null)
 		{
-			GrowSegment(mSegmentPrefab);
-			Destroy(eatable.gameObject);
+			eatable.BeEaten(this);
 		}
+
+		//IDamageDealing
 	}
 }

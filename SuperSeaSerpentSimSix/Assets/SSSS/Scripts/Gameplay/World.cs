@@ -6,7 +6,7 @@ public class World : MonoBehaviour {
 	private static World sInstance;
 	public static World Instance { get { return sInstance; } }
 
-	public GameObject mSerpent;
+	public Serpent mSerpent;
 
 	public GameObject mSeaBackground;
 	public GameObject mSeaBed;

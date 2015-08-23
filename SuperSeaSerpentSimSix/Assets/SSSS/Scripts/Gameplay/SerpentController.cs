@@ -33,6 +33,12 @@ public class SerpentController : MonoBehaviour {
 			{
 				Vector3 desiredPos = camRay.GetPoint(dist);
 				mSerpent.MoveToward(desiredPos);
+
+				if(Input.GetMouseButtonDown(0))
+				{
+					Debug.Log("Attack");
+					mSerpent.Attack(desiredPos);
+				}
 			}
 		//}
 		/*

@@ -220,16 +220,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mGravity: 9.80000019
-  mJoint: {fileID: 0}
-  mRigidbody: {fileID: 0}
   mModel: {fileID: 175588}
+  mRigidbody: {fileID: 0}
+  mJoint: {fileID: 0}
   mSpeedMultiplier: 5
   mMaxTurnAngle: 2.35500002
   mMaxAcceleration: 10
-  mNumInitialSegments: 2
+  mNumInitialSegments: 4
   mSegmentPrefab: {fileID: 178242, guid: d26cdf22bd8781f428ca8e42be2316f2, type: 2}
   mTailPrefab: {fileID: 177822, guid: 5c9fcae7f4a38ce4f8833bbd69f0f7bf, type: 2}
   mReentryInputBlockerTime: .25
+  mAttackForce: 30
   mUndulationForce: 10
   mUndulationTime: 1
   mSegmentGrowthProgressTime: .5

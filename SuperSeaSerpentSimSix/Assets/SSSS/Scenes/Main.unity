@@ -182,12 +182,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 486442, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11442632, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
       propertyPath: mSerpent
       value: 
-      objectReference: {fileID: 1343844791}
+      objectReference: {fileID: 1343844795}
     - target: {fileID: 11442632, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
       propertyPath: mSeaBackground
       value: 
@@ -1727,15 +1727,17 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 490998, guid: dc5b74681dc996748a46dc196ee80094, type: 2}
   m_PrefabInternal: {fileID: 1343844789}
---- !u!1 &1343844791 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 176598, guid: dc5b74681dc996748a46dc196ee80094, type: 2}
-  m_PrefabInternal: {fileID: 1343844789}
 --- !u!54 &1343844792 stripped
 Rigidbody:
   m_PrefabParentObject: {fileID: 5426784, guid: dc5b74681dc996748a46dc196ee80094,
     type: 2}
   m_PrefabInternal: {fileID: 1343844789}
+--- !u!114 &1343844795 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11471686, guid: dc5b74681dc996748a46dc196ee80094,
+    type: 2}
+  m_PrefabInternal: {fileID: 1343844789}
+  m_Script: {fileID: 11500000, guid: 16674b5b44806514fbcdeb51fdef3343, type: 3}
 --- !u!4 &1347095181 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a7be80d971fb7465fb9cf5cad4b1730b, type: 3}

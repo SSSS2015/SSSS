@@ -45,4 +45,9 @@ public class Buoyancy  : MonoBehaviour {
 			mRigidbody.AddForceAtPosition(gravityDir*-0.25f*kGravity, worldPos, ForceMode.Acceleration);
 		}
 	}
+
+	public bool IsAboveWater()
+	{
+		return  transform.position.magnitude > World.Instance.SeaLevel - 0.5f;
+	}
 }
