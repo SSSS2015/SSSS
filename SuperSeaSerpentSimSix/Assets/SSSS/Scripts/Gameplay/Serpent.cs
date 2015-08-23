@@ -4,11 +4,11 @@ using System.Collections.Generic;
 public class Serpent : SerpentSegment {
 
 	public static readonly Vector3 kSegmentGrowthScale = new Vector3(1.75f, 1.75f, 1.75f);
-
+	public float mMaxSpeed = 10.0f;
 	public float mSpeedMultiplier = 2.0f;
+	public float mSpeedBonusPerSegment = 0.25f;
 
 	public float mMaxTurnAngle = Mathf.PI*0.5f;
-	public float mMaxAcceleration = 10.0f;
 
 	public int mNumInitialSegments = 3;
 
@@ -38,6 +38,7 @@ public class Serpent : SerpentSegment {
 	{
 		public LinkedListNode<SerpentSegment> mCurrentSegment;
 		public GameObject mSegmentPrefab;
+		public int mHealAmount;
 	}
 	public HashSet<SegmentGrowth> mSegmentGrowths = new HashSet<SegmentGrowth>();
 
@@ -61,20 +62,27 @@ public class Serpent : SerpentSegment {
 		GameObject segmentObj = Instantiate(prefab, attachTarget.transform.position, attachTarget.transform.rotation) as GameObject;
 		segmentObj.transform.parent = World.Instance.transform;
 		SerpentSegment segment = segmentObj.GetComponent<SerpentSegment>();
+		segment.mSerpent = this;
 		segment.AttachTo(attachTarget);
 		return segment;
 	}
 
-	public void GrowSegment()
+	public void Digest(int healAmount = 1)
 	{
-		GrowSegment(mSegmentPrefab);
+		GrowSegment(null, healAmount);
 	}
 
-	public void GrowSegment(GameObject prefab)
+	public void GrowSegment(int healAmount = 1)
+	{
+		GrowSegment(mSegmentPrefab, healAmount);
+	}
+
+	public void GrowSegment(GameObject prefab, int healAmount = 1)
 	{
 		SegmentGrowth growth = new SegmentGrowth();
 		growth.mSegmentPrefab = prefab;
 		growth.mCurrentSegment = mSegments.First;
+		growth.mHealAmount = healAmount;
 
 		mSegmentGrowths.Add(growth);
 	}
@@ -87,7 +95,11 @@ public class Serpent : SerpentSegment {
 			growth.mCurrentSegment = growth.mCurrentSegment.Next;
 			if(growth.mCurrentSegment == mSegments.Last)
 			{
-				AddSegment(growth.mSegmentPrefab);
+				if(growth.mSegmentPrefab != null)
+				{
+					AddSegment(growth.mSegmentPrefab);
+				}
+				Heal(growth.mHealAmount);
 				completedGrowths.Add(growth);
 			}
 		}
@@ -180,8 +192,10 @@ public class Serpent : SerpentSegment {
 				float undulation = Mathf.Sin(undulationPeriod*mUndulationTimer);
 				finalDir += cross*undulation*0.5f;
 
-				Vector3 desiredVel = finalDir * distFromDesiredPos * mSpeedMultiplier;// * Time.deltaTime;
-				Vector3.SmoothDamp(vel, desiredVel, ref vel, 1.0f, mMaxAcceleration, Time.deltaTime);
+				float bonusSpeed = Mathf.Max(0, mSegments.Count - mNumInitialSegments)*mSpeedBonusPerSegment;
+
+				Vector3 desiredVel = finalDir * distFromDesiredPos * (mSpeedMultiplier + bonusSpeed);// * Time.deltaTime;
+				Vector3.SmoothDamp(vel, desiredVel, ref vel, 1.0f, mMaxSpeed, Time.deltaTime);
 
 				mRigidbody.velocity = vel;
 			}
@@ -220,7 +234,7 @@ public class Serpent : SerpentSegment {
 		mRigidbody.AddForce(desiredDir*mAttackForce, ForceMode.Impulse);
 	}
 
-	public void TakeDamage(int damageAmount)
+	public void TakeDamage(int damageAmount = 1)
 	{
 		mHealth -= damageAmount;
 		if(mHealth <= 0)
@@ -230,14 +244,17 @@ public class Serpent : SerpentSegment {
 		}
 	}
 
-	public void OnCollisionEnter(Collision c)
+	public void Heal(int healAmount = 1)
+	{
+		mHealth = Mathf.Min(mHealth + healAmount, MaxHealth);
+	}
+
+	public override void OnCollisionEnter(Collision c)
 	{
 		IEatable eatable = c.collider.GetComponentInParent(typeof(IEatable)) as IEatable;
 		if(eatable != null)
 		{
 			eatable.BeEaten(this);
 		}
-
-		//IDamageDealing
 	}
 }

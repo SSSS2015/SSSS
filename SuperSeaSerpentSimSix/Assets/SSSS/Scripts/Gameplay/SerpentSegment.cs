@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SerpentSegment : BaseSeaCreature {
 	public Joint mJoint;
+	public Serpent mSerpent;
 
 	public override void Awake()
 	{
@@ -16,5 +17,14 @@ public class SerpentSegment : BaseSeaCreature {
 	public void AttachTo(GameObject attachTarget)
 	{
 		mJoint.connectedBody = attachTarget.GetComponent<Rigidbody>();
+	}
+
+	public virtual void OnCollisionEnter(Collision c)
+	{
+		IDamaging damaging = c.collider.GetComponent(typeof(IDamaging)) as IDamaging;
+		if(damaging != null)
+		{
+			damaging.ApplyDamage(mSerpent);
+		}
 	}
 }

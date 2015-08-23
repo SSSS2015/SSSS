@@ -188,9 +188,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mAttackRange: 10
   mTellOffset: .300000012
-  mAttackTellTime: 2
-  mMinTimeBetweenAttacks: 1
-  mMaxTimeBetweenAttacks: 4
+  mAttackTellTime: 1
+  mMinTimeBetweenAttacks: 0
+  mMaxTimeBetweenAttacks: 1
   mProjectilePrefab: {fileID: 178848, guid: fdae322ffc0e7fd4886fa7529d1867d4, type: 2}
   mHand: {fileID: 496280}
   mBuoyancy: {fileID: 0}
@@ -238,15 +238,15 @@ Prefab:
       objectReference: {fileID: 178848, guid: fdae322ffc0e7fd4886fa7529d1867d4, type: 2}
     - target: {fileID: 0}
       propertyPath: mAttackTellTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: mMinTimeBetweenAttacks
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
+      propertyPath: mMinTimeBetweenAttacks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: mMaxTimeBetweenAttacks
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: mTellOffset
