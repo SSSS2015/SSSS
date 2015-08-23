@@ -209,11 +209,14 @@ MonoBehaviour:
   mSpeedMultiplier: 2
   mGravityAcceleration: 9.80000019
   mMaxTurnAngle: 2.35500002
+  mMaxAcceleration: 10
   mNumInitialSegments: 2
   mSegmentPrefab: {fileID: 178242, guid: d26cdf22bd8781f428ca8e42be2316f2, type: 2}
   mTailPrefab: {fileID: 178242, guid: d26cdf22bd8781f428ca8e42be2316f2, type: 2}
+  mReentryInputBlockerTime: .25
   mUndulationForce: 10
   mUndulationTime: 1
+  mSegmentGrowthProgressTime: .5
 --- !u!135 &13542188
 SphereCollider:
   m_ObjectHideFlags: 1

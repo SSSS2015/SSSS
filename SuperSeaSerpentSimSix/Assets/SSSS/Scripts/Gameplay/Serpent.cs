@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Serpent : SerpentSegment {
 
-	public static readonly Vector3 kSegmentGrowthScale = new Vector3(1.25f, 1.25f, 1.25f);
+	public static readonly Vector3 kSegmentGrowthScale = new Vector3(1.5f, 1.5f, 1.5f);
 
 	public float mSpeedMultiplier = 2.0f;
 	public float mGravityAcceleration = 9.8f;
@@ -17,6 +17,8 @@ public class Serpent : SerpentSegment {
 	public GameObject mTailPrefab;
 
 	protected Vector3 mDesiredPos;
+	public float mReentryInputBlockerTime = 0.5f;
+	protected float mReentryInputBlockerTimer = 0.0f;
 
 	protected LinkedList<SerpentSegment> mSegments = new LinkedList<SerpentSegment>();
 
@@ -62,37 +64,39 @@ public class Serpent : SerpentSegment {
 		SegmentGrowth growth = new SegmentGrowth();
 		growth.mSegmentPrefab = prefab;
 		growth.mCurrentSegment = mSegments.First;
-		growth.mCurrentSegment.Value.transform.localScale = kSegmentGrowthScale;
 
 		mSegmentGrowths.Add(growth);
 	}
 
 	public void ProgressSegmentGrowth()
 	{
-		if(mSegmentGrowths.Count <= 0)
-		{
-			return;
-		}
-
 		HashSet<SegmentGrowth> completedGrowths = new HashSet<SegmentGrowth>();
 		foreach(var growth in mSegmentGrowths)
 		{
-			growth.mCurrentSegment.Value.transform.localScale = Vector3.one;
 			growth.mCurrentSegment = growth.mCurrentSegment.Next;
 			if(growth.mCurrentSegment == mSegments.Last)
 			{
 				AddSegment(growth.mSegmentPrefab);
 				completedGrowths.Add(growth);
 			}
-			else
-			{
-				growth.mCurrentSegment.Value.transform.localScale = kSegmentGrowthScale;
-			}
 		}
 
 		foreach(var growth in completedGrowths)
 		{
 			mSegmentGrowths.Remove(growth);
+		}
+	}
+
+	public void UpdateSegmentGrowthSizes()
+	{
+		foreach(var growth in mSegmentGrowths)
+		{
+			float t = Mathf.Clamp01(mSegmentGrowthProgressTimer/mSegmentGrowthProgressTime);
+			growth.mCurrentSegment.Value.transform.localScale = Vector3.Lerp(kSegmentGrowthScale, Vector3.one, t);
+			if(growth.mCurrentSegment.Next != mSegments.Last)
+			{
+				growth.mCurrentSegment.Next.Value.transform.localScale = Vector3.Lerp(Vector3.one, kSegmentGrowthScale, t);
+			}
 		}
 	}
 
@@ -114,12 +118,20 @@ public class Serpent : SerpentSegment {
 
 	public void Update()
 	{
+		if(mSegmentGrowths.Count <= 0)
+		{
+			mSegmentGrowthProgressTimer = 0.0f;
+			return;
+		}
+
 		mSegmentGrowthProgressTimer += Time.deltaTime;
 		if(mSegmentGrowthProgressTimer >= mSegmentGrowthProgressTime)
 		{
 			mSegmentGrowthProgressTimer -= mSegmentGrowthProgressTime;
 			ProgressSegmentGrowth();
 		}
+
+		UpdateSegmentGrowthSizes();
 	}
 
 	public void FixedUpdate()
@@ -127,6 +139,13 @@ public class Serpent : SerpentSegment {
 		bool isAboveWater = transform.localPosition.magnitude >= World.Instance.SeaLevel;
 		if(isAboveWater)
 		{
+			mReentryInputBlockerTimer = mReentryInputBlockerTime;
+		}
+
+		if(mReentryInputBlockerTimer > 0)
+		{
+			mReentryInputBlockerTimer -= Time.deltaTime;
+
 			Vector3 gravityDir = transform.position;
 			gravityDir.Normalize();
 			gravityDir *= -1;
@@ -136,12 +155,12 @@ public class Serpent : SerpentSegment {
 		{
 			Vector3 desiredDir = mDesiredPos - transform.position;
 			float distFromDesiredPos = desiredDir.magnitude;
-			if(distFromDesiredPos > 0.1f)
+			if(distFromDesiredPos > 0.5f)
 			{
 				desiredDir.Normalize ();
 				//Vector3 desiredVel = desiredDir * mSpeedMultiplier;// * Time.deltaTime;
 				Vector3 vel = mRigidbody.velocity;
-				float currSpeed = vel.magnitude;
+				//float currSpeed = vel.magnitude;
 				Vector3 currDir = vel.normalized;
 
 				Vector3 finalDir = Vector3.RotateTowards(currDir, desiredDir, mMaxTurnAngle, float.MaxValue);
@@ -149,10 +168,10 @@ public class Serpent : SerpentSegment {
 				mUndulationTimer += Time.deltaTime;
 				Vector3 cross = Vector3.Cross(Camera.main.transform.forward, finalDir);
 				cross.Normalize();
-				float undulationSpeedFactor = Mathf.Clamp01(currSpeed/20.0f);
+				//float undulationSpeedFactor = Mathf.Clamp01(currSpeed/20.0f);
 				float undulationPeriod = Mathf.PI*1.5f;// * (undulationSpeedFactor);
 				float undulation = Mathf.Sin(undulationPeriod*mUndulationTimer);
-				finalDir += cross*undulation*0.25f;
+				finalDir += cross*undulation*0.5f;
 
 				Vector3 desiredVel = finalDir * distFromDesiredPos * mSpeedMultiplier;// * Time.deltaTime;
 				Vector3.SmoothDamp(vel, desiredVel, ref vel, 1.0f, mMaxAcceleration, Time.deltaTime);
