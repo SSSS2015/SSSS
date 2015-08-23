@@ -9,7 +9,8 @@ public class SpringNode
     public SpringNode UR, DR, UL, DL;
 
     public Vector3 Pos;
-    public Vector3 Delta;
+    public Vector3 Origin; // Default position in mesh
+    public Vector3 Velocity;
     public bool Locked;
 }
 
@@ -24,6 +25,8 @@ public class SpringGrid : MonoBehaviour
     public float kSpringForceHoriz = .01f;
     public float kSpringForceVert = .01f;
     public float kSpringForceDiag = .005f;
+    public float kSpringForceOrigin = .0001f;
+    public float kDamping = 0.99f;
 
     public const float kInnerRadius = 75.0f;
     public const float kOuterRadius = 100.0f;
@@ -48,10 +51,6 @@ public class SpringGrid : MonoBehaviour
 
         MeshFilter filter = GetComponent<MeshFilter>();
         MyMesh = filter.mesh; // Clones mesh from sharedMesh
-
-        Bounds b = GetComponent<MeshRenderer>().bounds;
-        
-
         CreateNodes();
     }
 
@@ -110,8 +109,8 @@ public class SpringGrid : MonoBehaviour
 
                 Vector3 pos = World.Instance.GetWorldCoordinate(new Vector2(height, theta * Mathf.Deg2Rad));
 
-                thisNode.Pos = pos;
-                thisNode.Delta = Vector3.zero;
+                thisNode.Pos = thisNode.Origin = pos;
+                thisNode.Velocity = Vector3.zero;
 
                 thisNode.Down = GetNode(x, y-1);
                 thisNode.Up = GetNode(x, y+1);
@@ -186,9 +185,14 @@ public class SpringGrid : MonoBehaviour
         Vector3 posDelta = other.Pos - node.Pos;
         float lengthDelta = posDelta.magnitude;
         float springError = lengthDelta - dist;
+        if(springError < 0)
+        {
+            // TODO: force to counteract compression is higher than force to counteract expansion?
+            springError *= 1;
+        }
 
-        Vector3 accel = posDelta * (springError / lengthDelta) * force * dt;
-        node.Delta += accel;
+        Vector3 accel = posDelta * ((springError / lengthDelta) * force * dt);
+        node.Velocity += accel;
     }
 
     public void SimulateSpringForces(float dt)
@@ -208,6 +212,17 @@ public class SpringGrid : MonoBehaviour
             Spring(node, node.DL, dt, kDiagSpringDist, kSpringForceDiag);
             Spring(node, node.UR, dt, kDiagSpringDist, kSpringForceDiag);
             Spring(node, node.DR, dt, kDiagSpringDist, kSpringForceDiag);
+
+            // Spring force back towards origin
+            Vector3 originDelta = node.Origin - node.Pos;
+            float originDist2 = originDelta.sqrMagnitude;
+
+            if(originDist2 > 0.000001f)
+            {
+                // accel towards origin is proportional to distance^3
+                Vector3 accel = originDist2 * (originDelta * dt * kSpringForceOrigin);
+                node.Velocity += accel;
+            }
         }
     }
 
@@ -225,14 +240,15 @@ public class SpringGrid : MonoBehaviour
 
             if(diffMagSq > 0.01f && diffMagSq < distSq)
             {
-                power *= 1 - (diff.magnitude / dist);
-                node.Delta += power * diff.normalized;
+                //power *= 1 - (diff.magnitude / dist);
+                node.Velocity += power * diff.normalized;
             }
         }
     }
 
     public void ResetNodePositions()
     {
+        // TODO: Fix stitching
         if (RightGrid != null)
         {
             // Stitch right line of this as a copy of the left line of the adjacent mesh
@@ -241,14 +257,14 @@ public class SpringGrid : MonoBehaviour
                 SpringNode node = GetNode(kGridWidth - 1, y);
                 SpringNode otherNode = RightGrid.GetNode(0, y);
                 node.Pos = otherNode.Pos;
-                node.Delta = otherNode.Delta;
+                node.Velocity = otherNode.Velocity;
             }
         }
 
         for (int i = 0; i < kGridHeight * kGridWidth; ++i)
         {
-            Nodes[i].Pos += Nodes[i].Delta;
-            Nodes[i].Delta = Vector3.zero;
+            Nodes[i].Pos += Nodes[i].Velocity;
+            Nodes[i].Velocity *= kDamping;
         }
     }
 
@@ -256,7 +272,11 @@ public class SpringGrid : MonoBehaviour
     {
         for (int i = 0; i < kGridHeight * kGridWidth; ++i)
         {
-            TempPositions[MeshIndices[i]] = transform.InverseTransformPoint(Nodes[i].Pos);
+            Vector3 pos = Nodes[i].Pos;
+            //pos = transform.InverseTransformPoint(pos);
+            pos.z = 0;
+
+            TempPositions[MeshIndices[i]] = pos;
         }
 
         m.vertices = TempPositions;
@@ -310,7 +330,7 @@ public class SpringGrid : MonoBehaviour
                     return rows[i];
                 }
 
-                if (radius > rows[i].Radius)
+                if (radius < rows[i].Radius)
                     break;
             }
 

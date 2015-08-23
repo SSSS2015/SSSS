@@ -36,7 +36,7 @@ public class WaveManager : MonoBehaviour
         for(int i = 0; i < kNumSegments; ++i)
         {
             GameObject gridObj = GameObject.Instantiate(WavePrefab);
-            gridObj.transform.parent = transform;
+            gridObj.transform.SetParent(transform, false);
             SpringGrid grid = gridObj.GetComponent<SpringGrid>();
             grid.Theta = i * SpringGrid.kThetaDelta;
             grid.Initialize(MeshIndices, tempPositions);
