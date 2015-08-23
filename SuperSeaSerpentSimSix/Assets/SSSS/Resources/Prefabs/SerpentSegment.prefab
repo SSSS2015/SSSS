@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 451646}
   - 33: {fileID: 3388826}
-  - 64: {fileID: 6408468}
   - 23: {fileID: 2396084}
   m_Layer: 0
   m_Name: Quad
@@ -27,7 +26,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 406744}
   - 33: {fileID: 3362340}
-  - 64: {fileID: 6459598}
   - 23: {fileID: 2320750}
   m_Layer: 0
   m_Name: Quad (1)
@@ -198,30 +196,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 0
---- !u!64 &6408468
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 129102}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &6459598
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 169852}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &11436254
 MonoBehaviour:
   m_ObjectHideFlags: 1
