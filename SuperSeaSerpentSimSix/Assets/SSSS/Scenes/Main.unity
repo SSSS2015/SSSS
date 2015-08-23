@@ -145,6 +145,60 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39d5508b707094caaa6503273e8c92d8, type: 3}
   m_IsPrefabParent: 0
+--- !u!1001 &109333765
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 486442, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 486442, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 486442, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 486442, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 486442, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 486442, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 486442, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 486442, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11442632, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: mSerpent
+      value: 
+      objectReference: {fileID: 1343844791}
+    - target: {fileID: 11442632, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: mSeaBackground
+      value: 
+      objectReference: {fileID: 1357299847}
+    - target: {fileID: 11442632, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: mSeaBed
+      value: 
+      objectReference: {fileID: 1438335539}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &111732472
 Prefab:
   m_ObjectHideFlags: 0
@@ -464,7 +518,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 47def3dcbc6604c48b719ac8ec2e3245, type: 2}
+  - {fileID: 2100000, guid: b0331833ff9aa4b8c940674aac94ddb1, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -813,9 +867,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 578523286}
-  - 114: {fileID: 578523287}
   m_Layer: 0
-  m_Name: World
+  m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -845,21 +898,6 @@ Transform:
   - {fileID: 873274221}
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!114 &578523287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 578523285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dd8f3b659e4d1c4c8228e9982a56bf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mSerpent: {fileID: 1343844791}
-  mSeaBackground: {fileID: 1357299847}
-  mSeaBed: {fileID: 1438335539}
-  mFishPrefab: {fileID: 118728, guid: 3c8a36164206a2b46bf8f3b605b9dd1f, type: 2}
 --- !u!1001 &624613844
 Prefab:
   m_ObjectHideFlags: 0

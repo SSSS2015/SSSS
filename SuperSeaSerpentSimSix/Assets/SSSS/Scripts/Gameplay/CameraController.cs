@@ -55,7 +55,7 @@ public class CameraController : MonoBehaviour {
 	{
 		if(mLookAtTarget != null)
 		{
-			LookAt(mLookAtTarget.position);
+			LookAt(mLookAtTarget.position + mLookAtTarget.velocity*0.33f);
 		}
 
 		// lerp towards desired look
