@@ -6,7 +6,6 @@ public class Serpent : SerpentSegment {
 	public static readonly Vector3 kSegmentGrowthScale = new Vector3(1.75f, 1.75f, 1.75f);
 
 	public float mSpeedMultiplier = 2.0f;
-	public float mGravityAcceleration = 9.8f;
 
 	public float mMaxTurnAngle = Mathf.PI*0.5f;
 	public float mMaxAcceleration = 10.0f;
@@ -135,10 +134,9 @@ public class Serpent : SerpentSegment {
 		UpdateSegmentGrowthSizes();
 	}
 
-	public void FixedUpdate()
+	public override void FixedUpdate()
 	{
-		bool isAboveWater = transform.localPosition.magnitude >= World.Instance.SeaLevel;
-		if(isAboveWater)
+		if(IsAboveWater())
 		{
 			mReentryInputBlockerTimer = mReentryInputBlockerTime;
 		}
@@ -146,11 +144,7 @@ public class Serpent : SerpentSegment {
 		if(mReentryInputBlockerTimer > 0)
 		{
 			mReentryInputBlockerTimer -= Time.deltaTime;
-
-			Vector3 gravityDir = transform.position;
-			gravityDir.Normalize();
-			gravityDir *= -1;
-			mRigidbody.AddForce(gravityDir*mGravityAcceleration, ForceMode.Acceleration);
+			ApplyGravity();
 		}
 		else
 		{

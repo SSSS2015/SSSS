@@ -32,13 +32,17 @@ public class Buoyancy  : MonoBehaviour {
 		gravityDir.Normalize();
 		gravityDir *= optForceContribution;
 
-		if(distFromSeaLevel < 0 || !mBuoyancyEnabled)// above water
+		if(distFromSeaLevel < 0)// above water
 		{
 			mRigidbody.AddForceAtPosition(gravityDir*-kGravity, worldPos, ForceMode.Acceleration);
 		}
-		else
+		else if(mBuoyancyEnabled)
 		{
 			mRigidbody.AddForceAtPosition(gravityDir*kGravity*distFromSeaLevel*mBuoyanceFactor, worldPos, ForceMode.Acceleration);
+		}
+		else
+		{
+			mRigidbody.AddForceAtPosition(gravityDir*-0.25f*kGravity, worldPos, ForceMode.Acceleration);
 		}
 	}
 }

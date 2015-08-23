@@ -219,11 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16674b5b44806514fbcdeb51fdef3343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mGravity: 9.80000019
   mJoint: {fileID: 0}
   mRigidbody: {fileID: 0}
   mModel: {fileID: 175588}
-  mSpeedMultiplier: 2
-  mGravityAcceleration: 9.80000019
+  mSpeedMultiplier: 5
   mMaxTurnAngle: 2.35500002
   mMaxAcceleration: 10
   mNumInitialSegments: 2
