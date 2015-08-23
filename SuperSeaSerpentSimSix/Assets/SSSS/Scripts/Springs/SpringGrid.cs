@@ -36,23 +36,21 @@ public class SpringGrid : MonoBehaviour
 
     public SpringNode[] Nodes;
 
-    private Vector3[] positions = new Vector3[kGridWidth * kGridHeight];
-    private int[] meshIndices = new int[kGridWidth * kGridHeight];
+    [NonSerialized] private Vector3[] TempPositions;
+    [NonSerialized] private int[] MeshIndices;
 
     private Mesh MyMesh;
 
-    [UsedImplicitly]
-    void Start()
+    public void Initialize(int[] meshIndices, Vector3[] tempPositions)
     {
-        MeshFilter filter = GetComponent<MeshFilter>();
-        if(filter != null)
-        {
-            MyMesh = filter.mesh; // Clones mesh from sharedMesh
+        MeshIndices = meshIndices;
+        TempPositions = tempPositions;
 
-            // TODO: This should only happen once, not for every segment
-            if(MyMesh != null)
-                ImportMesh(MyMesh);
-        }
+        MeshFilter filter = GetComponent<MeshFilter>();
+        MyMesh = filter.mesh; // Clones mesh from sharedMesh
+
+        Bounds b = GetComponent<MeshRenderer>().bounds;
+        
 
         CreateNodes();
     }
@@ -71,7 +69,7 @@ public class SpringGrid : MonoBehaviour
             TransferToMesh(MyMesh);
     }
 
-    public int GridIdx(int x, int y)
+    public static int GridIdx(int x, int y)
     {
         return y * kGridWidth + x;
     }
@@ -141,10 +139,18 @@ public class SpringGrid : MonoBehaviour
         for(int y = 0; y < kGridHeight; ++y)
         {
             // We leave the far-rightmost grid node as a mirror of the leftmost grid node in the next grid
+            // So link the left-side nodes from the next grid to the 2nd-from-the-right nodes in this grid
             SpringNode thisNode = GetNode(kGridWidth - 2, y);
             SpringNode otherNode = RightGrid.GetNode(0, y);
-            thisNode.Right = otherNode;
             otherNode.Left = thisNode;
+
+            otherNode = RightGrid.GetNode(0, y - 1);
+            if (otherNode != null)
+                otherNode.UL = thisNode;
+
+            otherNode = RightGrid.GetNode(0, y + 1);
+            if(otherNode != null)
+                otherNode.DL = thisNode;
         }
     }
 
@@ -153,24 +159,23 @@ public class SpringGrid : MonoBehaviour
         if (RightGrid == null)
             return;
 
+        // unlink all the nodes
         for(int y = 0; y < kGridHeight; ++y)
         {
-            SpringNode thisNode = GetNode(kGridWidth - 2, y);
             SpringNode otherNode = RightGrid.GetNode(0, y);
-            thisNode.Right = null;
             otherNode.Left = null;
+
+            otherNode = RightGrid.GetNode(0, y - 1);
+            if(otherNode != null)
+                otherNode.UL = null;
+
+            otherNode = RightGrid.GetNode(0, y + 1);
+            if(otherNode != null)
+                otherNode.DL = null;
         }
 
         RightGrid.LeftGrid = null;
         RightGrid = null;
-    }
-
-    public void ResetNodePositions()
-    {
-        for(int i = 0; i < kGridHeight * kGridWidth; ++i)
-        {
-            Nodes[i].Pos += Nodes[i].Delta;
-        }
     }
 
     private static void Spring(SpringNode node, SpringNode other, float dt, float dist, float force)
@@ -208,16 +213,54 @@ public class SpringGrid : MonoBehaviour
 
     public void AddOutwardForce(Vector2 center, float dist, float power)
     {
-        
+        Vector3 center3 = new Vector3(center.x, center.y, 0);
+        float distSq = dist*dist;
+
+        // TODO: Don't visit every node
+        for(int i = 0; i < kGridHeight * kGridWidth; ++i)
+        {
+            SpringNode node = Nodes[i];
+            Vector3 diff = node.Pos - center3;
+            float diffMagSq = diff.sqrMagnitude;
+
+            if(diffMagSq > 0.01f && diffMagSq < distSq)
+            {
+                power *= 1 - (diff.magnitude / dist);
+                node.Delta += power * diff.normalized;
+            }
+        }
+    }
+
+    public void ResetNodePositions()
+    {
+        if (RightGrid != null)
+        {
+            // Stitch right line of this as a copy of the left line of the adjacent mesh
+            for (int y = 0; y < kGridHeight; ++y)
+            {
+                SpringNode node = GetNode(kGridWidth - 1, y);
+                SpringNode otherNode = RightGrid.GetNode(0, y);
+                node.Pos = otherNode.Pos;
+                node.Delta = otherNode.Delta;
+            }
+        }
+
+        for (int i = 0; i < kGridHeight * kGridWidth; ++i)
+        {
+            Nodes[i].Pos += Nodes[i].Delta;
+            Nodes[i].Delta = Vector3.zero;
+        }
     }
 
     public void TransferToMesh(Mesh m)
     {
         for (int i = 0; i < kGridHeight * kGridWidth; ++i)
         {
-            positions[meshIndices[i]] = Nodes[i].Pos;
+            TempPositions[MeshIndices[i]] = transform.InverseTransformPoint(Nodes[i].Pos);
         }
-        m.vertices = positions;
+
+        m.vertices = TempPositions;
+        m.RecalculateBounds();
     }
 
     private struct RowEntry
@@ -278,9 +321,10 @@ public class SpringGrid : MonoBehaviour
         }
     }
 
-    public void ImportMesh(Mesh m)
+    static public int[] ImportMesh(Mesh m)
     {
         Vector3[] positions = m.vertices;
+
         if(positions.Length != kGridHeight * kGridWidth)
             throw new Exception("SpringGrid::ImportMesh: bad mesh");
 
@@ -308,7 +352,8 @@ public class SpringGrid : MonoBehaviour
             }
         }
 
-        for(int y = 0; y < rows.Count; ++y)
+        int[] meshIndices = new int[kGridWidth * kGridHeight];
+        for (int y = 0; y < rows.Count; ++y)
         {
             MeshRow row = rows[y];
             for(int x = 0; x < row.Entries.Count; ++ x)
@@ -316,5 +361,17 @@ public class SpringGrid : MonoBehaviour
                 meshIndices[GridIdx(x,y)] = row.Entries[x].Index;
             }
         }
+        return meshIndices;
+    }
+
+    public bool InBounds(Vector3 pos, float slop)
+    {
+        Bounds b = MyMesh.bounds;
+        Vector3 center = b.center;
+        Bounds zBounds = new Bounds(b.center, new Vector3(0, 0, 200));
+        b.Expand(slop);
+        b.Encapsulate(zBounds);
+        
+        return b.Contains(pos);
     }
 }
