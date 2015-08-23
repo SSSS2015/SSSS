@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: TreeCanopy
   m_Shader: {fileID: 4800000, guid: 2e0b05cfd20244f0080cb224f3e9c00c, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _FLIPUVS_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -65,6 +65,10 @@ Material:
         first:
           name: _DropShadow_offsetY
         second: .0250000004
+      data:
+        first:
+          name: _flipUVs
+        second: 1
     m_Colors:
       data:
         first:
