@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Fish : MonoBehaviour {
+public class Fish : BaseSeaCreature {
 
 }

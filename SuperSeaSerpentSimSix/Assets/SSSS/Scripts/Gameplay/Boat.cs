@@ -5,6 +5,9 @@ public class Boat : MonoBehaviour {
 
 	public Buoyancy mBuoyancy;
 
+	public int mMinPeople = 1;
+	public int mMaxPeople = 3;
+
 	public float mCapsizeTime = 2.0f;
 	protected float mCapsizeTimer = 0.0f;
 

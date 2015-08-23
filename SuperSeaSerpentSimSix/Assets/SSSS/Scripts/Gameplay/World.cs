@@ -22,6 +22,7 @@ public class World : MonoBehaviour {
 	
 	public GameObject mFishPrefab;
 	public GameObject mBoatPrefab;
+	public GameObject mPersonPrefab;
 
 	public void Awake()
 	{

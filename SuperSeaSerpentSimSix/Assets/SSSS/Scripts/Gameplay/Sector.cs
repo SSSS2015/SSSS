@@ -39,17 +39,38 @@ public class Sector
 		for(int i = 0; i < numBoats; ++i)
 		{
 			Vector2 boatPolarPos = new Vector2(mWorld.SeaLevel-0.5f, Random.Range(mStart, mEnd));
-			SpawnEntity(mWorld.mBoatPrefab, boatPolarPos);
+			GameObject boatObj = SpawnEntity(mWorld.mBoatPrefab, boatPolarPos);
+			Boat boat = boatObj.GetComponent<Boat>();
+			if(boat != null)
+			{
+				int numPeople = Random.Range(boat.mMinPeople, boat.mMaxPeople+1);
+				for(int p = 0; p < numPeople; ++p)
+				{
+					int leftOrRight = (Random.value > 0.5f)?1:-1;
+					float range = boat.mBuoyancy.mEndsOffset;
+					Vector3 personPos = boat.transform.position + boat.transform.right*Random.Range(-range,range) + boat.transform.up*0.5f;
+					SpawnEntity(mWorld.mPersonPrefab, personPos, boat.transform.up, Vector3.forward*leftOrRight); 
+				}
+			}
 		}
 	}
 
-	public void SpawnEntity(GameObject prefab, Vector2 polarPos)
+	public GameObject SpawnEntity(GameObject prefab, Vector2 polarPos)
 	{
 		Vector3 worldPos = mWorld.GetWorldCoordinate(polarPos);
 		Vector3 up = worldPos.normalized;
 		Quaternion rot = Quaternion.LookRotation(Vector3.forward*((Random.value > 0.5f)?1:-1), up);
 		GameObject obj = GameObject.Instantiate(prefab, worldPos, rot) as GameObject;
 		mEntities.Add(obj);
+		return obj;
+	}
+
+	public GameObject SpawnEntity(GameObject prefab, Vector3 worldPos, Vector3 up, Vector3 forward)
+	{
+		Quaternion rot = Quaternion.LookRotation(forward, up);
+		GameObject obj = GameObject.Instantiate(prefab, worldPos, rot) as GameObject;
+		mEntities.Add(obj);
+		return obj;
 	}
 	
 	public void Destroy()

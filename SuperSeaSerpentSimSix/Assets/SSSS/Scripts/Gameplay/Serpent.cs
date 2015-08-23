@@ -170,17 +170,7 @@ public class Serpent : SerpentSegment {
 
 				Vector3 desiredVel = finalDir * distFromDesiredPos * mSpeedMultiplier;// * Time.deltaTime;
 				Vector3.SmoothDamp(vel, desiredVel, ref vel, 1.0f, mMaxAcceleration, Time.deltaTime);
-				//mRigidbody.velocity = Vector3.RotateTowards(mRigidbody.velocity, desiredVel, mMaxTurnAngle, mMaxAcceleration*Time.deltaTime);
-				//mRigidbody.AddForce(vel, ForceMode.VelocityChange);
 
-				/*
-				if(mUndulationTimer >= mUndulationTime)
-				{
-					Vector3 undulateForceVec = transform.position.normalized;
-					mRigidbody.AddForce(undulateForceVec*mUndulationForce, ForceMode.Force);
-					mUndulationTimer -= mUndulationTime;
-				}
-				*/
 				mRigidbody.velocity = vel;
 			}
 		}
@@ -211,13 +201,13 @@ public class Serpent : SerpentSegment {
 		mDesiredPos = worldPos;
 	}
 
-	public void OnTriggerEnter(Collider c)
+	public void OnCollisionEnter(Collision c)
 	{
-		Fish fish = c.GetComponentInParent<Fish>();
-		if(fish != null)
+		Eatable eatable = c.collider.GetComponentInParent<Eatable>();
+		if(eatable != null)
 		{
 			GrowSegment(mSegmentPrefab);
-			Destroy(fish.gameObject);
+			Destroy(eatable.gameObject);
 		}
 	}
 }
