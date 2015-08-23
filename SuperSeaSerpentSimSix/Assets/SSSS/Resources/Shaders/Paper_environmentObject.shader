@@ -10,6 +10,13 @@ Shader "SeaSerpent/Paper_environmentObject" {
         _FogColor ("FogColor", Color) = (0.665279,0.7364948,0.7867647,1)
         _FogStrength ("FogStrength", Range(0, 1)) = 0
         [HideInInspector]_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
+        
+         _DropShadowColor ("DropShadowColor", Color) = (0,0,0,1)
+        _dropShadowOpacity ("dropShadowOpacity", Range(0, 1)) = 0.3760684
+        _fuzziness ("fuzziness", Range(0, 5)) = 0
+        _DropShadow_offsetX ("DropShadow_offsetX", Range(-0.5, 0.5)) = 0
+        _DropShadow_offsetY ("DropShadow_offsetY", Range(-0.5, 0.5)) = 0
+        
     }
     SubShader {
         Tags {
@@ -18,6 +25,69 @@ Shader "SeaSerpent/Paper_environmentObject" {
             "RenderType"="Transparent"
         }
         LOD 200
+        
+        
+ Pass {
+            Name "DropShadow"
+            Tags {
+				"LightMode"="ForwardBase"
+				"IgnoreProjector"="True"
+				"Queue"="Transparent-20"
+				"RenderType"="Transparent"
+            }
+            Blend SrcAlpha OneMinusSrcAlpha
+            ZWrite Off
+            
+            Offset 1, 500
+            
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #define UNITY_PASS_FORWARDBASE
+            #include "UnityCG.cginc"
+            #pragma multi_compile_fwdbase
+            #pragma multi_compile_fog
+
+                        #pragma target 3.0
+            #pragma glsl
+            uniform sampler2D _BaseTexture; uniform float4 _BaseTexture_ST;
+            uniform float4 _FogColor;
+            uniform float _FogStrength;
+            uniform float4 _DropShadowColor;
+            uniform float _dropShadowOpacity;
+            uniform float _fuzziness;
+            uniform float _DropShadow_offsetX;
+            uniform float _DropShadow_offsetY;
+            struct VertexInput {
+                float4 vertex : POSITION;
+                float2 texcoord0 : TEXCOORD0;
+            };
+            struct VertexOutput {
+                float4 pos : SV_POSITION;
+                float2 uv0 : TEXCOORD0;
+                UNITY_FOG_COORDS(1)
+            };
+            VertexOutput vert (VertexInput v) {
+                VertexOutput o = (VertexOutput)0;
+                o.uv0 = v.texcoord0;
+                v.vertex.xyz += float3(_DropShadow_offsetX,_DropShadow_offsetY,0.0);
+                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+                UNITY_TRANSFER_FOG(o,o.pos);
+                return o;
+            }
+            float4 frag(VertexOutput i) : COLOR {
+/////// Vectors:
+////// Lighting:
+                float3 finalColor = lerp(_DropShadowColor.rgb,_FogColor.rgb,_FogStrength);
+                float4 _BaseTexture_var = tex2Dlod(_BaseTexture,float4(TRANSFORM_TEX(i.uv0, _BaseTexture),0.0,_fuzziness));
+                fixed4 finalRGBA = fixed4(finalColor,(_BaseTexture_var.a*_dropShadowOpacity));
+                UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
+                return finalRGBA;
+            }
+            ENDCG
+        }
+       
+        
         Pass {
             Name "FORWARD"
             Tags {
@@ -67,6 +137,10 @@ Shader "SeaSerpent/Paper_environmentObject" {
             }
             ENDCG
         }
+        
+
+                
+        
     }
     FallBack "Diffuse"
     CustomEditor "ShaderForgeMaterialInspector"
