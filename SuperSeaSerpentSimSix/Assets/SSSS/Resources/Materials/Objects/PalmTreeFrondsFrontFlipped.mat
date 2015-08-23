@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: PalmTreeFrondsFrontFlipped
+  m_Shader: {fileID: 4800000, guid: 2e0b05cfd20244f0080cb224f3e9c00c, type: 3}
+  m_ShaderKeywords: _FLIPUVS_ON
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _PaperTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: c41835ebb036b4b42b50f7dcc34d000f, type: 3}
+          m_Scale: {x: .829999983, y: .449999988}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BaseTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: af3407ca38f5c48b19bae100fec304a3, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _node_2836
+        second:
+          m_Texture: {fileID: 2800000, guid: 27d38682c85cd4a1ebf26a019707ec5a, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Cutoff
+        second: .5
+      data:
+        first:
+          name: _TimeScale
+        second: .910000026
+      data:
+        first:
+          name: _FogStrength
+        second: .442000002
+      data:
+        first:
+          name: _dropShadowOpacity
+        second: .449000001
+      data:
+        first:
+          name: _fuzziness
+        second: 1.71000004
+      data:
+        first:
+          name: _DropShadow_offsetX
+        second: -.0529999994
+      data:
+        first:
+          name: _DropShadow_offsetY
+        second: .0250000004
+      data:
+        first:
+          name: _flipUVs
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _FogColor
+        second: {r: .665278971, g: .73649478, b: .786764681, a: 1}
+      data:
+        first:
+          name: _DropShadowColor
+        second: {r: 0, g: 0, b: 0, a: 1}
