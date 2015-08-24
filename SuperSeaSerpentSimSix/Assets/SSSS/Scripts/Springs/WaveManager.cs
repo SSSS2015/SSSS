@@ -56,8 +56,11 @@ public class WaveManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        // TODO: We really only want to run simulation on segments near the player
+        // HACK: handle pause because we don't handle it properly
+        if (Time.deltaTime == 0)
+            return;
 
+        // TODO: We really only want to run simulation on segments near the player
 	    for(int i = 0; i < kNumSegments; ++i)
         {
             Grids[i].SimulateSpringForces(Time.deltaTime);
