@@ -253,7 +253,7 @@ Animator:
   m_GameObject: {fileID: 174062}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 31aaea6d158614e89aeb307bad6be18b, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d64f01774e49ef4c8411116645dcbb4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mSerpent: {fileID: 11471686}
+  mAttract: 1
 --- !u!114 &11471686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,6 +302,7 @@ MonoBehaviour:
   mUndulationForce: 10
   mUndulationTime: 1
   mSegmentGrowthProgressTime: .5
+  mAnimator: {fileID: 0}
 --- !u!135 &13536392
 SphereCollider:
   m_ObjectHideFlags: 1
