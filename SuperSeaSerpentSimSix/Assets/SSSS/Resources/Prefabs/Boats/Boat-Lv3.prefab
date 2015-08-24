@@ -70,7 +70,7 @@ GameObject:
   - 4: {fileID: 498806}
   - 33: {fileID: 3329330}
   - 23: {fileID: 2305610}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: boat_sailboat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,6 +281,10 @@ Prefab:
       propertyPath: mPeoplePrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 195902, guid: d8da261d777f0e34db31e748ee33f595, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 170246}

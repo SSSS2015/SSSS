@@ -53,6 +53,7 @@ MonoBehaviour:
     - {fileID: 118728, guid: 3c8a36164206a2b46bf8f3b605b9dd1f, type: 2}
     mBoatPrefabs:
     - {fileID: 130620, guid: ade716e6cac3f8b41add1643f87dc74b, type: 2}
+    - {fileID: 130620, guid: ced9af165cb901948b98b4cb5c02942c, type: 2}
   - mMinSeaCreaturesToSpawn: 10
     mMaxSeaCreaturesToSpawn: 15
     mMinBoatToSpawn: 10

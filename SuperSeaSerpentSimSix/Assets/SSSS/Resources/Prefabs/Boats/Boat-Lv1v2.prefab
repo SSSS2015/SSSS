@@ -43,7 +43,7 @@ GameObject:
   - 114: {fileID: 11466030}
   - 114: {fileID: 11484710}
   m_Layer: 11
-  m_Name: Boat-Lv1
+  m_Name: Boat-Lv1v2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,8 +232,6 @@ MonoBehaviour:
   mBuoyancy: {fileID: 0}
   mCapsizeTime: 2
   mPeoplePrefabs:
-  - {fileID: 195902, guid: db316b1cc55395c4293a504d829ec6e2, type: 2}
-  - {fileID: 195902, guid: db316b1cc55395c4293a504d829ec6e2, type: 2}
   - {fileID: 195902, guid: 89bbc0e77bab8d6448630765434d1f96, type: 2}
   mSpawnPositions:
   - {fileID: 451244}
@@ -247,7 +245,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: mPeoplePrefabs.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
@@ -260,11 +258,11 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: mPeoplePrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 195902, guid: db316b1cc55395c4293a504d829ec6e2, type: 2}
+      objectReference: {fileID: 195902, guid: 89bbc0e77bab8d6448630765434d1f96, type: 2}
     - target: {fileID: 0}
       propertyPath: mPeoplePrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 195902, guid: 89bbc0e77bab8d6448630765434d1f96, type: 2}
+      objectReference: {fileID: 195902, guid: db316b1cc55395c4293a504d829ec6e2, type: 2}
     - target: {fileID: 0}
       propertyPath: mPeoplePrefabs.Array.data[2]
       value: 
