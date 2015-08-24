@@ -196,6 +196,10 @@ Prefab:
       propertyPath: mSeaBed
       value: 
       objectReference: {fileID: 1438335539}
+    - target: {fileID: 11442632, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
+      propertyPath: mSegmentsPerDifficultyLevel
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a630172bb772fd44db7858fc8fbaa2c7, type: 2}
   m_IsPrefabParent: 0
@@ -2806,11 +2810,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_SizeDelta.y
@@ -2818,7 +2822,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -296.405884
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 144d94f58906f694e9855957be398f7d, type: 2}

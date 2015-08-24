@@ -21,7 +21,7 @@ public class World : MonoBehaviour {
 	protected int mCurrentSector;
 
 	public DifficultyStage[] mDifficultyStages;
-	public int mSegmentsPerDifficultyLevel = 3;
+	public int mSegmentsPerDifficultyLevel = 2;
 
 	//public GameObject mFishPrefab;
 	//public GameObject mBoatPrefab;
