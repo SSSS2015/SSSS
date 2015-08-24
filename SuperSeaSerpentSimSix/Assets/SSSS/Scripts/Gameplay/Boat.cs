@@ -5,9 +5,6 @@ public class Boat : MonoBehaviour {
 
 	public Buoyancy mBuoyancy;
 
-	public int mMinPeople = 1;
-	public int mMaxPeople = 3;
-
 	public float mCapsizeTime = 2.0f;
 	protected float mCapsizeTimer = 0.0f;
 
@@ -48,12 +45,19 @@ public class Boat : MonoBehaviour {
 			return;
 		}
 
-		int numPeople = Random.Range(mMinPeople, mMaxPeople+1);
-		for(int p = 0; p < numPeople; ++p)
+		int numSlots = mSpawnPositions.Length;
+		int forceSpawnIndex = Random.Range(0, numSlots); // ensure that at least one person is on this boat
+
+		for(int i = 0; i < numSlots; ++i)
 		{
+			if(i != forceSpawnIndex && Random.value > 0.6f)
+			{
+				continue;
+			}
+
 			int leftOrRight = (Random.value > 0.5f)?1:-1;
 			float range = mBuoyancy.mEndsOffset;
-			Vector3 personPos = transform.position + transform.right*Random.Range(-range,range) + transform.up*0.5f;
+			Vector3 personPos = mSpawnPositions[i].position;
 			GameObject prefab = mPeoplePrefabs[Random.Range(0, numPeopleOptions)];
 			sector.SpawnEntity(prefab, personPos, transform.up, Vector3.forward*leftOrRight); 
 		}

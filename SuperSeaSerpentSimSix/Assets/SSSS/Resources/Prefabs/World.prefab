@@ -65,8 +65,8 @@ MonoBehaviour:
     - {fileID: 199534, guid: ffb6a94d245bed84291394641a003b52, type: 2}
   - mMinSeaCreaturesToSpawn: 5
     mMaxSeaCreaturesToSpawn: 10
-    mMinBoatToSpawn: 15
-    mMaxBoatToSpawn: 20
+    mMinBoatToSpawn: 10
+    mMaxBoatToSpawn: 15
     mSeaCreaturePrefabs:
     - {fileID: 118728, guid: 3c8a36164206a2b46bf8f3b605b9dd1f, type: 2}
     - {fileID: 118728, guid: df9cb8884bababa44a024b4a4d6acad5, type: 2}
@@ -74,6 +74,39 @@ MonoBehaviour:
     mBoatPrefabs:
     - {fileID: 199534, guid: ffb6a94d245bed84291394641a003b52, type: 2}
     - {fileID: 170246, guid: d70f49a8601bbfd4b9ff86ab54503518, type: 2}
+  - mMinSeaCreaturesToSpawn: 5
+    mMaxSeaCreaturesToSpawn: 10
+    mMinBoatToSpawn: 15
+    mMaxBoatToSpawn: 20
+    mSeaCreaturePrefabs:
+    - {fileID: 118728, guid: 3c8a36164206a2b46bf8f3b605b9dd1f, type: 2}
+    - {fileID: 118728, guid: df9cb8884bababa44a024b4a4d6acad5, type: 2}
+    - {fileID: 118728, guid: cadb9d47eaad16043a9e84bd2776ceab, type: 2}
+    mBoatPrefabs:
+    - {fileID: 170246, guid: d70f49a8601bbfd4b9ff86ab54503518, type: 2}
+    - {fileID: 167798, guid: c2d0cda503f01e14381b206b51950f0b, type: 2}
+  - mMinSeaCreaturesToSpawn: 5
+    mMaxSeaCreaturesToSpawn: 10
+    mMinBoatToSpawn: 8
+    mMaxBoatToSpawn: 12
+    mSeaCreaturePrefabs:
+    - {fileID: 118728, guid: 3c8a36164206a2b46bf8f3b605b9dd1f, type: 2}
+    - {fileID: 118728, guid: df9cb8884bababa44a024b4a4d6acad5, type: 2}
+    - {fileID: 118728, guid: cadb9d47eaad16043a9e84bd2776ceab, type: 2}
+    mBoatPrefabs:
+    - {fileID: 167798, guid: c2d0cda503f01e14381b206b51950f0b, type: 2}
+    - {fileID: 158166, guid: 528af9d9709174b4d9d14ee46be95a3e, type: 2}
+  - mMinSeaCreaturesToSpawn: 5
+    mMaxSeaCreaturesToSpawn: 10
+    mMinBoatToSpawn: 5
+    mMaxBoatToSpawn: 10
+    mSeaCreaturePrefabs:
+    - {fileID: 118728, guid: 3c8a36164206a2b46bf8f3b605b9dd1f, type: 2}
+    - {fileID: 118728, guid: df9cb8884bababa44a024b4a4d6acad5, type: 2}
+    - {fileID: 118728, guid: cadb9d47eaad16043a9e84bd2776ceab, type: 2}
+    mBoatPrefabs:
+    - {fileID: 158166, guid: 528af9d9709174b4d9d14ee46be95a3e, type: 2}
+    - {fileID: 157630, guid: 433bf6949cf9dd8469de93e24a115420, type: 2}
   mSegmentsPerDifficultyLevel: 3
   mSplashPrefab: {fileID: 118906, guid: 4e578c338f7ab5e40a07683044d44087, type: 2}
   mMinSplashSpeed: 1
