@@ -6,9 +6,6 @@ public class AudioController : MonoBehaviour {
 	private static AudioController _instance;
 	public static AudioController Instance {
 		get{
-			if(_instance == null){
-				_instance = new AudioController();
-			}
 			return _instance;
 		}
 	}
@@ -20,6 +17,16 @@ public class AudioController : MonoBehaviour {
 	public AudioClip sfx_hurt;
 	public AudioClip[] roars;
 
+	public void Awake()
+	{
+		if(_instance != null)
+		{
+			Destroy(this);
+			return;
+		}
+		
+		_instance = this;
+	}
 
 	public AudioController(){
 		sfxPlayer = new AudioSource ();
