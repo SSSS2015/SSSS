@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: 38d57b24be0894882a3bc737d24245d5
+timeCreated: 1440401634
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Group Locator
+    100002: //RootNode
+    100004: Man
+    100006: Person
+    100008: Person (10)
+    100010: Person (11)
+    100012: Person (12)
+    100014: Person (13)
+    100016: Person (14)
+    100018: Person (15)
+    100020: Person (16)
+    100022: Person (17)
+    100024: Person (18)
+    100026: Person (19)
+    100028: Person (2)
+    100030: Person (20)
+    100032: Person (21)
+    100034: Person (22)
+    100036: Person (23)
+    100038: Person (24)
+    100040: Person (3)
+    100042: Person (4)
+    100044: Person (5)
+    100046: Person (6)
+    100048: Person (7)
+    100050: Person (8)
+    100052: Person (9)
+    100054: Texture Group
+    100056: Cube
+    100058: Mesh
+    400000: Group Locator
+    400002: //RootNode
+    400004: Man
+    400006: Person
+    400008: Person (10)
+    400010: Person (11)
+    400012: Person (12)
+    400014: Person (13)
+    400016: Person (14)
+    400018: Person (15)
+    400020: Person (16)
+    400022: Person (17)
+    400024: Person (18)
+    400026: Person (19)
+    400028: Person (2)
+    400030: Person (20)
+    400032: Person (21)
+    400034: Person (22)
+    400036: Person (23)
+    400038: Person (24)
+    400040: Person (3)
+    400042: Person (4)
+    400044: Person (5)
+    400046: Person (6)
+    400048: Person (7)
+    400050: Person (8)
+    400052: Person (9)
+    400054: Texture Group
+    400056: Cube
+    400058: Mesh
+    2300000: Cube
+    2300002: //RootNode
+    3300000: Cube
+    3300002: //RootNode
+    4300000: Man
+    4300002: Cube
+    4300004: Person
+    7400000: Walk
+    7400002: Walk_slow
+    7400004: Run
+    7400006: Run_Panic
+    7400008: Idle
+    7400010: Jump
+    7400012: JumpUp
+    7400014: JumpDown
+    7400016: JumpStay
+    7400018: Ride
+    7400020: step_up_1_right
+    7400022: step_up_1_left
+    7400024: climb_up_2_blocks
+    7400026: climb_up_3_blocks
+    7400028: climb_up_4_blocks
+    7400030: Sword_whack
+    7400032: backwards_walk
+    7400034: walk_left
+    7400036: walk_right
+    7400038: Shoot_raygun
+    7400040: Shoot_bow
+    7400042: Shovel
+    7400044: Sword_down
+    7400046: Sword_up
+    7400048: Kick
+    7400050: squat_eat
+    7400052: Pull_horizontal
+    7400054: Pull_vertical
+    7400056: Drive
+    9500000: //RootNode
+    13700000: Man
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
