@@ -17,8 +17,6 @@ public class Serpent : SerpentSegment {
 	public GameObject mSkullPrefab;
 
 	protected Vector3 mDesiredPos;
-	public float mReentryInputBlockerTime = 0.5f;
-	protected float mReentryInputBlockerTimer = 0.0f;
 
 	protected LinkedList<SerpentSegment> mSegments = new LinkedList<SerpentSegment>();
 	public LinkedList<SerpentSegment> Segments { get { return mSegments; } }

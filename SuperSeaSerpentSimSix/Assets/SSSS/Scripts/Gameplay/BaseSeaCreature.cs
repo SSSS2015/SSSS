@@ -8,6 +8,8 @@ public class BaseSeaCreature : MonoBehaviour {
 	public Rigidbody mRigidbody;
 
 	protected bool mWasAboveWater = false;
+	public float mReentryInputBlockerTime = 0.5f;
+	protected float mReentryInputBlockerTimer = 0.0f;
 
 	public virtual void Awake()
 	{

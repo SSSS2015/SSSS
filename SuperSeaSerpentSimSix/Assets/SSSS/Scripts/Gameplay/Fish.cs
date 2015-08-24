@@ -18,6 +18,9 @@ public class Fish : BaseSeaCreature, IEatable {
 	public float mDetectionRadius = 10.0f;
 	public float mFleeSpeed = 3.0f;
 
+	public float mReentryInputBlockerTime = 0.5f;
+	protected float mReentryInputBlockerTimer = 0.0f;
+
 	public void BeEaten(Serpent eater)
 	{
 		// heal the serpent
@@ -35,34 +38,46 @@ public class Fish : BaseSeaCreature, IEatable {
 
 	public void Update()
 	{
+		if(mReentryInputBlockerTimer > 0)
+		{
+			mReentryInputBlockerTimer -= Time.deltaTime;
+		}
+
 		if(!IsAboveWater())
 		{
-			int numSegmentsInRange = 0;
-			Vector3 segmentsCenter = Vector3.zero;
-			Collider[] colliders = Physics.OverlapSphere(transform.position, mDetectionRadius, kSerpentMask);
-			for(int i = 0, n = colliders.Length; i < n; ++i)
+			if( mReentryInputBlockerTimer <= 0)
 			{
-				Collider c = colliders[i];
-				SerpentSegment segment = c.GetComponentInParent<SerpentSegment>();
-				if(segment != null)
+				int numSegmentsInRange = 0;
+				Vector3 segmentsCenter = Vector3.zero;
+				Collider[] colliders = Physics.OverlapSphere(transform.position, mDetectionRadius, kSerpentMask);
+				for(int i = 0, n = colliders.Length; i < n; ++i)
 				{
-					segmentsCenter += segment.transform.position;
-					numSegmentsInRange++;
+					Collider c = colliders[i];
+					SerpentSegment segment = c.GetComponentInParent<SerpentSegment>();
+					if(segment != null)
+					{
+						segmentsCenter += segment.transform.position;
+						numSegmentsInRange++;
+					}
 				}
-			}
-			
-			if(numSegmentsInRange > 0)
-			{
-				segmentsCenter /= numSegmentsInRange;
-				segmentsCenter.z = 0;
-				Vector3 desiredVel = transform.position - segmentsCenter;
-				desiredVel.Normalize();
-				//mRigidbody.AddForce(dirAwayFromSegments * mFleeSpeed, ForceMode.VelocityChange);
-				Vector3 vel = mRigidbody.velocity;
-				Vector3.SmoothDamp(vel, desiredVel*mFleeSpeed, ref vel, 1.0f, mFleeSpeed, Time.deltaTime);
+				
+				if(numSegmentsInRange > 0)
+				{
+					segmentsCenter /= numSegmentsInRange;
+					segmentsCenter.z = 0;
+					Vector3 desiredVel = transform.position - segmentsCenter;
+					desiredVel.Normalize();
+					//mRigidbody.AddForce(dirAwayFromSegments * mFleeSpeed, ForceMode.VelocityChange);
+					Vector3 vel = mRigidbody.velocity;
+					Vector3.SmoothDamp(vel, desiredVel*mFleeSpeed, ref vel, 1.0f, mFleeSpeed, Time.deltaTime);
 				
 				mRigidbody.velocity = vel;
 			}
+		}
+		}
+		else
+		{
+			mReentryInputBlockerTimer = mReentryInputBlockerTime;
 		}
 
 		UpdateLooking();
