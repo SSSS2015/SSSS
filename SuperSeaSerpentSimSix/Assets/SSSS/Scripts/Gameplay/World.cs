@@ -23,6 +23,9 @@ public class World : MonoBehaviour {
 	public GameObject mFishPrefab;
 	public GameObject mBoatPrefab;
 	public GameObject mPersonPrefab;
+	public GameObject mSplashPrefab;
+
+	public float mMinSplashSpeed = 1.0f;
 
 	public ScoreManager mScoreManager = new ScoreManager();
 
@@ -126,4 +129,14 @@ public class World : MonoBehaviour {
             return SeaLevel;
         }
     }
+
+	public void SpawnSplash(float speed, Vector3 worldPos)
+	{
+		if(speed > mMinSplashSpeed)
+		{
+			GameObject splashObj = Instantiate(mSplashPrefab, worldPos, Quaternion.LookRotation(worldPos.normalized, Vector3.forward)) as GameObject;
+			splashObj.transform.localScale *= speed/3.0f;
+			Destroy(splashObj, 1.0f);
+		}
+	}
 }

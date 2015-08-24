@@ -10,6 +10,8 @@ public class Buoyancy  : MonoBehaviour {
 	public float mEndsOffset = 1.0f;
 
 	public Rigidbody mRigidbody;
+	
+	protected bool mWasAboveWater = true;
 
 	public void Awake()
 	{
@@ -21,13 +23,23 @@ public class Buoyancy  : MonoBehaviour {
 
 	public void FixedUpdate () 
 	{
+		bool isAboveWater = IsAboveWater();
+
 		HandleBuoyancy(transform.position + transform.right*mEndsOffset, 0.5f);
 		HandleBuoyancy(transform.position - transform.right*mEndsOffset, 0.5f);
+
+		if(mWasAboveWater != isAboveWater)
+		{
+			World.Instance.SpawnSplash(mRigidbody.velocity.magnitude, transform.position);
+		}
+		
+		mWasAboveWater = isAboveWater;
 	}
 
 	public void HandleBuoyancy(Vector3 worldPos, float optForceContribution = 1.0f)
 	{
-		float distFromSeaLevel = World.Instance.SeaLevel-0.5f - worldPos.magnitude;
+		Vector2 polarCoords = World.Instance.GetPolarCoordinate(transform.position);
+		float distFromSeaLevel = World.Instance.GetSeaLevel(polarCoords.y) - worldPos.magnitude;
 		Vector3 gravityDir = transform.position;
 		gravityDir.Normalize();
 		gravityDir *= optForceContribution;
@@ -44,10 +56,13 @@ public class Buoyancy  : MonoBehaviour {
 		{
 			mRigidbody.AddForceAtPosition(gravityDir*-0.25f*kGravity, worldPos, ForceMode.Acceleration);
 		}
+
+
 	}
 
 	public bool IsAboveWater()
 	{
-		return  transform.position.magnitude > World.Instance.SeaLevel - 0.5f;
+		Vector2 polarCoords = World.Instance.GetPolarCoordinate(transform.position);
+		return polarCoords.x >= World.Instance.GetSeaLevel(polarCoords.y);
 	}
 }

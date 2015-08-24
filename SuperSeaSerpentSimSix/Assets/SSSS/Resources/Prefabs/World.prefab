@@ -46,6 +46,8 @@ MonoBehaviour:
   mFishPrefab: {fileID: 118728, guid: 3c8a36164206a2b46bf8f3b605b9dd1f, type: 2}
   mBoatPrefab: {fileID: 130620, guid: ade716e6cac3f8b41add1643f87dc74b, type: 2}
   mPersonPrefab: {fileID: 195902, guid: 89bbc0e77bab8d6448630765434d1f96, type: 2}
+  mSplashPrefab: {fileID: 118906, guid: 4e578c338f7ab5e40a07683044d44087, type: 2}
+  mMinSplashSpeed: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
