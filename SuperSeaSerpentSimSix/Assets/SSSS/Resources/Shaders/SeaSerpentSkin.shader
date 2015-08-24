@@ -15,6 +15,9 @@ Shader "SeaSerpent/SeaSerpentSkin" {
         _EyeBrightness ("EyeBrightness", Range(0, 5)) = 0
         _DamageColor ("DamageColor", Color) = (1,0.1470588,0.1470588,1)
         _DamageAmount ("DamageAmount", Range(0, 1)) = 0
+        
+        _DropShadowOpacity ("DropShadow Opacity", Range(0, 1)) = 0
+        _DropShadowColor ("DropShadowColor", Color) = (0.5,0.5,0.5,1)        
     }
     SubShader {
         Tags {
