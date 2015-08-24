@@ -955,6 +955,103 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 235a2c7fb1f844f8293ce52fe7e8a301, type: 3}
   m_PrefabInternal: {fileID: 1816065570}
+--- !u!1 &574687688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 574687690}
+  - 82: {fileID: 574687689}
+  m_Layer: 0
+  m_Name: WavesPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &574687689
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 574687688}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: .347000003
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!4 &574687690
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 574687688}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 848611429}
+  m_RootOrder: 3
 --- !u!1 &578523285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,6 +1470,7 @@ Transform:
   - {fileID: 1234601762}
   - {fileID: 2012089518}
   - {fileID: 667101720}
+  - {fileID: 574687690}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!114 &848611430
@@ -1388,9 +1486,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxPlayer: {fileID: 2012089519}
   roarPlayer: {fileID: 667101719}
+  wavesPlayer: {fileID: 574687689}
   sfx_pickup_fish: {fileID: 8300000, guid: 4933809d37a0d7c409e04ef82b2b361b, type: 3}
   sfx_pickup_crate: {fileID: 8300000, guid: f382ed7f556449f44a21b3029eb8949e, type: 3}
   sfx_hurt: {fileID: 8300000, guid: c0d82562a34e4744383bc9fc8f997184, type: 3}
+  sfx_menu_confirm: {fileID: 8300000, guid: 30a9f9d8fbaecbd4e86df53d7c3d1685, type: 3}
+  sfx_splash: {fileID: 8300000, guid: e51b5edc5e9dc5e489989f219b71c913, type: 3}
   roars:
   - {fileID: 8300000, guid: 2197a03942d848343aeb876c65cb18c4, type: 3}
   - {fileID: 8300000, guid: adae87c1f4d7bf040a3546c6cf6789f6, type: 3}
@@ -2504,7 +2605,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -235.480713
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 144d94f58906f694e9855957be398f7d, type: 2}
