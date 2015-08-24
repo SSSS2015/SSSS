@@ -135,7 +135,7 @@ public class World : MonoBehaviour {
 		if(speed > mMinSplashSpeed)
 		{
 			GameObject splashObj = Instantiate(mSplashPrefab, worldPos, Quaternion.LookRotation(worldPos.normalized, Vector3.forward)) as GameObject;
-			splashObj.transform.localScale *= speed/3.0f;
+			splashObj.transform.localScale *= speed/6.0f;
 			Destroy(splashObj, 1.0f);
 		}
 	}

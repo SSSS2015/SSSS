@@ -24,8 +24,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118906}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: 95, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: .5}
+  m_LocalPosition: {x: 0, y: 99.75, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: .790000021}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -35,7 +35,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118906}
-  lengthInSec: 1
+  lengthInSec: 2
   startDelay: 0
   speed: 1
   randomSeed: 0
@@ -248,8 +248,8 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 2
-    radius: 1
-    angle: 25
+    radius: .839999974
+    angle: 64.1999969
     length: 5
     boxX: 1
     boxY: 1
@@ -294,7 +294,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    cnt0: 7
+    cnt0: 8
     cnt1: 30
     cnt2: 30
     cnt3: 30
@@ -1032,7 +1032,7 @@ ParticleSystemRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 88d746a0807e77b4fa27b616f04853ca, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1068,6 +1068,26 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: EmissionModule.cnt0
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.tilesX
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.tilesY
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 88d746a0807e77b4fa27b616f04853ca, type: 2}
+    - target: {fileID: 0}
+      propertyPath: ShapeModule.type
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -31,14 +31,16 @@ public class Sector
 		int numFish = Random.Range(5,10);
 		for(int i = 0; i < numFish; ++i)
 		{
-			Vector2 fishPolarPos = new Vector2(Random.Range(mWorld.SeaBedLevel, mWorld.SeaLevel-2.0f), Random.Range(mStart, mEnd));
+			float theta = Random.Range(mStart, mEnd);
+			Vector2 fishPolarPos = new Vector2(Random.Range(mWorld.SeaBedLevel, mWorld.GetSeaLevel(theta)-2.0f), theta);
 			SpawnEntity(mWorld.mFishPrefab, fishPolarPos);
 		}
 
 		int numBoats = Random.Range(1,5);
 		for(int i = 0; i < numBoats; ++i)
 		{
-			Vector2 boatPolarPos = new Vector2(mWorld.SeaLevel-0.5f, Random.Range(mStart, mEnd));
+			float theta = Random.Range(mStart, mEnd);
+			Vector2 boatPolarPos = new Vector2(mWorld.GetSeaLevel(theta), theta);
 			GameObject boatObj = SpawnEntity(mWorld.mBoatPrefab, boatPolarPos);
 			Boat boat = boatObj.GetComponent<Boat>();
 			if(boat != null)
