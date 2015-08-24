@@ -26,22 +26,34 @@ public class Sector
 		mEnd = mStart + mWorld.SectorSize;
 	}
 	
-	public void Generate()
+	public void Generate(DifficultyStage data)
 	{
-		int numFish = Random.Range(5,10);
+		int numFish = Random.Range(data.mMinSeaCreaturesToSpawn,data.mMaxSeaCreaturesToSpawn);
 		for(int i = 0; i < numFish; ++i)
 		{
+			GameObject fishPrefab = data.GetRandomPrefab(data.mSeaCreaturePrefabs);
+			if(fishPrefab == null)
+			{
+				continue;
+			}
+
 			float theta = Random.Range(mStart, mEnd);
 			Vector2 fishPolarPos = new Vector2(Random.Range(mWorld.SeaBedLevel, mWorld.GetSeaLevel(theta)-2.0f), theta);
-			SpawnEntity(mWorld.mFishPrefab, fishPolarPos);
+			SpawnEntity(fishPrefab, fishPolarPos);
 		}
 
-		int numBoats = Random.Range(1,5);
+		int numBoats = Random.Range(data.mMinBoatToSpawn,data.mMaxBoatToSpawn);
 		for(int i = 0; i < numBoats; ++i)
 		{
+			GameObject boatPrefab = data.GetRandomPrefab(data.mBoatPrefabs);
+			if(boatPrefab == null)
+			{
+				continue;
+			}
+
 			float theta = Random.Range(mStart, mEnd);
 			Vector2 boatPolarPos = new Vector2(mWorld.GetSeaLevel(theta), theta);
-			GameObject boatObj = SpawnEntity(mWorld.mBoatPrefab, boatPolarPos);
+			GameObject boatObj = SpawnEntity(boatPrefab, boatPolarPos);
 			Boat boat = boatObj.GetComponent<Boat>();
 			if(boat != null)
 			{
@@ -56,6 +68,7 @@ public class Sector
 		Vector3 up = worldPos.normalized;
 		Quaternion rot = Quaternion.LookRotation(Vector3.forward*((Random.value > 0.5f)?1:-1), up);
 		GameObject obj = GameObject.Instantiate(prefab, worldPos, rot) as GameObject;
+		obj.transform.parent = mWorld.transform;
 		mEntities.Add(obj);
 		return obj;
 	}
@@ -64,6 +77,7 @@ public class Sector
 	{
 		Quaternion rot = Quaternion.LookRotation(forward, up);
 		GameObject obj = GameObject.Instantiate(prefab, worldPos, rot) as GameObject;
+		obj.transform.parent = mWorld.transform;
 		mEntities.Add(obj);
 		return obj;
 	}

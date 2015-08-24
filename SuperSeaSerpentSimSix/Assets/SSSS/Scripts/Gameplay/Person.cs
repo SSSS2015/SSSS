@@ -49,7 +49,7 @@ public class Person : MonoBehaviour, IEatable {
 
 	public void Update()
 	{
-		if(mIsDrowning)
+		if(mIsDrowning || mProjectilePrefab == null)
 		{
 			return;
 		}

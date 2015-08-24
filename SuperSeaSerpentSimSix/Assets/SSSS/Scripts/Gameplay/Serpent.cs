@@ -20,6 +20,7 @@ public class Serpent : SerpentSegment {
 	protected float mReentryInputBlockerTimer = 0.0f;
 
 	protected LinkedList<SerpentSegment> mSegments = new LinkedList<SerpentSegment>();
+	public LinkedList<SerpentSegment> Segments { get { return mSegments; } }
 
 	public float mAttackForce = 30.0f;
 
@@ -57,12 +58,9 @@ public class Serpent : SerpentSegment {
 			mAnimator = GetComponentInChildren<Animator>();
 		}
 		mSerpent = this;
-	}
 
-	public void Start()
-	{
 		mDesiredPos = transform.position;
-
+		
 		GameObject attachTarget = gameObject;
 		for(int i = 0; i < mNumInitialSegments; ++i)
 		{
@@ -70,7 +68,7 @@ public class Serpent : SerpentSegment {
 			attachTarget = segment.gameObject;
 			mSegments.AddLast(new LinkedListNode<SerpentSegment>(segment));
 		}
-
+		
 		mHealth = mNumInitialSegments;
 	}
 
@@ -146,6 +144,7 @@ public class Serpent : SerpentSegment {
 		}
 	}
 
+	[ContextMenu("Add Segment")]
 	public void AddSegment()
 	{
 		AddSegment(mSegmentPrefab);

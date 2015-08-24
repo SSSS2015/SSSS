@@ -19,9 +19,12 @@ public class World : MonoBehaviour {
 	public float SectorSize { get { return mSectorSize; } }
 	protected Sector[] mSectors;
 	protected int mCurrentSector;
-	
-	public GameObject mFishPrefab;
-	public GameObject mBoatPrefab;
+
+	public DifficultyStage[] mDifficultyStages;
+	public int mSegmentsPerDifficultyLevel = 3;
+
+	//public GameObject mFishPrefab;
+	//public GameObject mBoatPrefab;
 	public GameObject mSplashPrefab;
 
 	public float mMinSplashSpeed = 1.0f;
@@ -52,11 +55,12 @@ public class World : MonoBehaviour {
 
 	public void Start()
 	{
+		DifficultyStage difficulty = mDifficultyStages[GetDifficultyLevel()];
+			
 		mCurrentSector = GetSectorIndex(mSerpent.transform.position);
-
-		mSectors[GetLeftSectorIndex(mCurrentSector)].Generate();
-		mSectors[mCurrentSector].Generate();
-		mSectors[GetRightSectorIndex(mCurrentSector)].Generate();
+		mSectors[GetLeftSectorIndex(mCurrentSector)].Generate(difficulty);
+		mSectors[mCurrentSector].Generate(difficulty);
+		mSectors[GetRightSectorIndex(mCurrentSector)].Generate(difficulty);
 	}
 
 	public void Update()
@@ -68,21 +72,30 @@ public class World : MonoBehaviour {
 		{
 			int left = GetLeftSectorIndex(mCurrentSector);
 			int right = GetRightSectorIndex(mCurrentSector);
+
+			DifficultyStage difficulty = mDifficultyStages[GetDifficultyLevel()];
+
 			if(sector == left)
 			{
 				// we moved left
 				mSectors[right].Destroy();
-				mSectors[GetLeftSectorIndex(sector)].Generate();
+				mSectors[GetLeftSectorIndex(sector)].Generate(difficulty);
 			}
 			else
 			{
 				// we moved right
 				mSectors[left].Destroy();
-				mSectors[GetRightSectorIndex(sector)].Generate();
+				mSectors[GetRightSectorIndex(sector)].Generate(difficulty);
 			}
 		}
 
 		mCurrentSector = sector;
+	}
+
+	public int GetDifficultyLevel()
+	{
+		int newSegments = mSerpent.Segments.Count - mSerpent.mNumInitialSegments;
+		return Mathf.Min(newSegments/mSegmentsPerDifficultyLevel, mDifficultyStages.Length-1);
 	}
 
 	public int GetSectorIndex(Vector3 worldPos)

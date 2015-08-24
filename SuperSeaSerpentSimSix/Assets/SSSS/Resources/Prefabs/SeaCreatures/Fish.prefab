@@ -138,6 +138,7 @@ MonoBehaviour:
   mGravity: 9.80000019
   mModel: {fileID: 0}
   mRigidbody: {fileID: 0}
+  mHealAmount: 1
 --- !u!135 &13532320
 SphereCollider:
   m_ObjectHideFlags: 1
