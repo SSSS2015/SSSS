@@ -2,10 +2,12 @@
 using System.Collections;
 
 public class Fish : BaseSeaCreature, IEatable {
+	public int mHealAmount = 1;
+
 	public void BeEaten(Serpent eater)
 	{
 		// heal the serpent
-		eater.Digest();
+		eater.Digest(mHealAmount);
 		World.Instance.mScoreManager.AddScore(10);
 		AudioController.Instance.PlayPickupFishSfx ();
 		Destroy(gameObject);

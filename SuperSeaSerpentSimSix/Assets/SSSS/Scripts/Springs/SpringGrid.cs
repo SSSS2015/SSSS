@@ -431,7 +431,7 @@ public class SpringGrid : MonoBehaviour
                 // Check if the selected point is inside this line segment
                 float pointDiff = thetaRadians - prevPolar.y;
                 if (pointDiff < -Mathf.PI)
-                    polarDiff += Mathf.PI * 2;
+                    pointDiff += Mathf.PI * 2;
 
                 if(pointDiff >= 0 && pointDiff <= polarDiff)
                 {

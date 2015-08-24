@@ -20,6 +20,7 @@ public class Serpent : SerpentSegment {
 	protected float mReentryInputBlockerTimer = 0.0f;
 
 	protected LinkedList<SerpentSegment> mSegments = new LinkedList<SerpentSegment>();
+	public LinkedList<SerpentSegment> Segments { get { return mSegments; } }
 
 	public float mAttackForce = 30.0f;
 
@@ -39,6 +40,8 @@ public class Serpent : SerpentSegment {
 	protected int mNextGrowthCounter = 0;
 	public int NextGrowthCounter { get { return mNextGrowthCounter; } }
 
+	public Animator mAnimator;
+
 	public class SegmentGrowth
 	{
 		public LinkedListNode<SerpentSegment> mCurrentSegment;
@@ -47,10 +50,17 @@ public class Serpent : SerpentSegment {
 	}
 	public HashSet<SegmentGrowth> mSegmentGrowths = new HashSet<SegmentGrowth>();
 
-	public void Start()
+	public override void Awake ()
 	{
-		mDesiredPos = transform.position;
+		base.Awake ();
+		if(mAnimator == null)
+		{
+			mAnimator = GetComponentInChildren<Animator>();
+		}
+		mSerpent = this;
 
+		mDesiredPos = transform.position;
+		
 		GameObject attachTarget = gameObject;
 		for(int i = 0; i < mNumInitialSegments; ++i)
 		{
@@ -58,7 +68,7 @@ public class Serpent : SerpentSegment {
 			attachTarget = segment.gameObject;
 			mSegments.AddLast(new LinkedListNode<SerpentSegment>(segment));
 		}
-
+		
 		mHealth = mNumInitialSegments;
 	}
 
@@ -134,6 +144,7 @@ public class Serpent : SerpentSegment {
 		}
 	}
 
+	[ContextMenu("Add Segment")]
 	public void AddSegment()
 	{
 		AddSegment(mSegmentPrefab);
@@ -254,6 +265,11 @@ public class Serpent : SerpentSegment {
 
 	public void Heal(int healAmount = 1)
 	{
+		if(mHealth <= 0)
+		{
+			return;
+		}
+
 		mHealth = Mathf.Min(mHealth + healAmount, MaxHealth);
 	}
 
@@ -262,6 +278,7 @@ public class Serpent : SerpentSegment {
 		IEatable eatable = c.collider.GetComponentInParent(typeof(IEatable)) as IEatable;
 		if(eatable != null)
 		{
+			mAnimator.SetTrigger("Bite");
 			eatable.BeEaten(this);
 		}
 	}

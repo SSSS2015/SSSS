@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Paper_dynamic_waves
+  m_Shader: {fileID: 4800000, guid: 3d567883aee2b4fdaa67cc140a1c3244, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _PaperTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: c41835ebb036b4b42b50f7dcc34d000f, type: 3}
+          m_Scale: {x: 1, y: 2}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Texture_with_alpha
+        second:
+          m_Texture: {fileID: 2800000, guid: 88999b94b0d194535acac071b0caa256, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _WaveDisplacementTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: 4f6bb8db6ea3442b0a7d292a95599904, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Normals
+        second:
+          m_Texture: {fileID: 2800000, guid: 4b5baccc5a85e442c9e4c2d3c1b60a68, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _node_7636
+        second:
+          m_Texture: {fileID: 2800000, guid: 4f6bb8db6ea3442b0a7d292a95599904, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Cutoff
+        second: .5
+      data:
+        first:
+          name: _TimeScale
+        second: 1.77999997
+      data:
+        first:
+          name: _UV_Tiling
+        second: 11
+      data:
+        first:
+          name: _Offset
+        second: .0829999968
+      data:
+        first:
+          name: _node_7070
+        second: .248999998
+      data:
+        first:
+          name: _FogEnd
+        second: 50
+      data:
+        first:
+          name: _FogStart
+        second: 5
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: .255839109, g: .439518481, b: .669117689, a: 1}
+      data:
+        first:
+          name: _ShadowColor
+        second: {r: 0, g: .319371253, b: .691176474, a: 1}
+      data:
+        first:
+          name: _Wakecolor
+        second: {r: .297037214, g: .337121308, b: .602941215, a: 1}

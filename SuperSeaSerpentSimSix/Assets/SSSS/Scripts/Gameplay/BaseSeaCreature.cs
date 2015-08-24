@@ -7,6 +7,8 @@ public class BaseSeaCreature : MonoBehaviour {
 	public GameObject mModel;
 	public Rigidbody mRigidbody;
 
+	protected bool mWasAboveWater = false;
+
 	public virtual void Awake()
 	{
 		if(mRigidbody == null)
@@ -17,10 +19,17 @@ public class BaseSeaCreature : MonoBehaviour {
 	
 	public virtual void FixedUpdate()
 	{
-		if(IsAboveWater())
+		bool isAboveWater = IsAboveWater();
+		if(isAboveWater)
 		{
 			ApplyGravity();
 		}
+
+		if(mWasAboveWater != isAboveWater)
+		{
+			World.Instance.SpawnSplash(mRigidbody.velocity.magnitude, transform.position);
+		}
+		mWasAboveWater = isAboveWater;
 	}
 	
 	public void ApplyGravity()

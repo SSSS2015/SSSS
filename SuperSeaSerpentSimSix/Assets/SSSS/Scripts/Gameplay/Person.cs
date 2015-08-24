@@ -34,6 +34,9 @@ public class Person : MonoBehaviour, IEatable {
 
 	protected bool mIsDrowning = false;
 
+	public const float mDrownTime = 1.0f;
+	protected float mDrownTimer = 0.0f;
+
 	public void Awake()
 	{
 		if(mBuoyancy == null)
@@ -46,20 +49,30 @@ public class Person : MonoBehaviour, IEatable {
 
 	public void Update()
 	{
-		if(mIsDrowning)
+		if(mIsDrowning || mProjectilePrefab == null)
 		{
 			return;
 		}
 
-		if(!mBuoyancy.IsAboveWater())
+		bool isAboveWater = mBuoyancy.IsAboveWater();
+
+		if(!isAboveWater)
 		{
-			mIsDrowning = true;
-			DropProjectile();
-			return;
+			mDrownTimer += Time.deltaTime;
+			if(mDrownTimer >= mDrownTime)
+			{
+				mIsDrowning = true;
+				DropProjectile();
+				return;
+			}
 		}
+
+		mDrownTimer = 0.0f;
 		
 		Serpent serpent = World.Instance.mSerpent;
-		if(Vector3.SqrMagnitude(serpent.transform.position - transform.position) < mAttackRange*mAttackRange && serpent.IsAboveWater())
+		if(isAboveWater 
+		   && Vector3.SqrMagnitude(serpent.transform.position - transform.position) < mAttackRange*mAttackRange 
+		   && serpent.IsAboveWater())
 		{
 			mSerpentDetected = true;
 			mLastKnownSerpentPos = serpent.transform.position;

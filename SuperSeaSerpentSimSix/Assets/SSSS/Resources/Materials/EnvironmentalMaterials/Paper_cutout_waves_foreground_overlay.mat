@@ -47,12 +47,12 @@ Material:
         second: .172999993
       data:
         first:
-          name: _Offset
-        second: .878000021
-      data:
-        first:
           name: _UV_Tiling
         second: 12.6000004
+      data:
+        first:
+          name: _Offset
+        second: .878000021
       data:
         first:
           name: _FogEnd
@@ -69,7 +69,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0, g: .556845725, b: .580882311, a: 1}
+        second: {r: 0, g: .122971565, b: .183823526, a: 1}
       data:
         first:
           name: _ShadowColor

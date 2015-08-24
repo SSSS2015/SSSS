@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SerpentSegmentMaterial
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 27c351e5844284aa5a787e9a5fc33c3e, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2450
@@ -79,6 +79,27 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _PaperTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: 764c5d7b6829a44a797775b1987270d2, type: 3}
+          m_Scale: {x: 2, y: 2}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DiffuseTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: 93e0b693d704c438fb35f0792e68e862, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _LightingRamp
+        second:
+          m_Texture: {fileID: 2800000, guid: 1d18eb23668704101969afc658edc54c, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -128,6 +149,38 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _paperTextureTiling
+        second: .349999994
+      data:
+        first:
+          name: _OutlineWidth
+        second: .0350000001
+      data:
+        first:
+          name: _VerticalOffset
+        second: 1.44000006
+      data:
+        first:
+          name: _HorizontalOffset
+        second: 1.42999995
+      data:
+        first:
+          name: _ShadowOfset
+        second: .0399999991
+      data:
+        first:
+          name: _DropShadowOpacity
+        second: 0
+      data:
+        first:
+          name: _EyeBrightness
+        second: 1.79999995
+      data:
+        first:
+          name: _DamageAmount
+        second: 0
     m_Colors:
       data:
         first:
@@ -137,3 +190,15 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _DropShadowColor
+        second: {r: .0974264741, g: .25, b: .231059849, a: 1}
+      data:
+        first:
+          name: _EyeColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _DamageColor
+        second: {r: 1, g: .0882353187, b: .0882353187, a: 1}
