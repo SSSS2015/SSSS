@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Island7
+  m_Name: PoopSkull
   m_Shader: {fileID: 4800000, guid: 2e0b05cfd20244f0080cb224f3e9c00c, type: 3}
   m_ShaderKeywords: _FLIPUVS_ON
   m_LightmapFlags: 5

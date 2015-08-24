@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: poopSkull
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: 2e0b05cfd20244f0080cb224f3e9c00c, type: 3}
+  m_ShaderKeywords: _FLIPUVS_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -78,6 +78,20 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _PaperTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: c41835ebb036b4b42b50f7dcc34d000f, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BaseTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: 04d10834d5bde465e93002a023a42d5e, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -127,6 +141,30 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _FogStrength
+        second: 0
+      data:
+        first:
+          name: _dropShadowOpacity
+        second: .376068413
+      data:
+        first:
+          name: _fuzziness
+        second: 3.27999997
+      data:
+        first:
+          name: _DropShadow_offsetX
+        second: -.0900000036
+      data:
+        first:
+          name: _DropShadow_offsetY
+        second: -.0599999987
+      data:
+        first:
+          name: _flipUVs
+        second: 1
     m_Colors:
       data:
         first:
@@ -136,3 +174,11 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _FogColor
+        second: {r: .665278971, g: .73649478, b: .786764681, a: 1}
+      data:
+        first:
+          name: _DropShadowColor
+        second: {r: 0, g: 0, b: 0, a: 1}
