@@ -38,7 +38,7 @@ public class Buoyancy  : MonoBehaviour {
 
 	public void HandleBuoyancy(Vector3 worldPos, float optForceContribution = 1.0f)
 	{
-		Vector2 polarCoords = World.Instance.GetPolarCoordinate(transform.position);
+		Vector2 polarCoords = World.GetPolarCoordinate(transform.position);
 		float distFromSeaLevel = World.Instance.GetSeaLevel(polarCoords.y) - worldPos.magnitude;
 		Vector3 gravityDir = transform.position;
 		gravityDir.Normalize();
@@ -62,7 +62,7 @@ public class Buoyancy  : MonoBehaviour {
 
 	public bool IsAboveWater()
 	{
-		Vector2 polarCoords = World.Instance.GetPolarCoordinate(transform.position);
+		Vector2 polarCoords = World.GetPolarCoordinate(transform.position);
 		return polarCoords.x >= World.Instance.GetSeaLevel(polarCoords.y);
 	}
 }

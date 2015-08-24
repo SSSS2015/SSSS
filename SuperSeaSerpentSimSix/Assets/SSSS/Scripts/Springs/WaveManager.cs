@@ -16,7 +16,7 @@ public class WaveManager : MonoBehaviour
     [NonSerialized] private SpringGrid[] Grids;
 
     [UsedImplicitly]
-	void Start ()
+	void Awake()
     {
         SpringGrid prefabGrid = WavePrefab.GetComponent<SpringGrid>();
         if (prefabGrid == null)

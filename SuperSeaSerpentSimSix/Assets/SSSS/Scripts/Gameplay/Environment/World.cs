@@ -116,13 +116,13 @@ public class World : MonoBehaviour {
 		return mSectors[GetSectorIndex(worldPos)];
 	}
 
-	public Vector2 GetPolarCoordinate(Vector3 worldPos)
+	public static Vector2 GetPolarCoordinate(Vector3 worldPos)
 	{
 		Vector2 flattenedPos = new Vector2(worldPos.x, worldPos.y);
 		return new Vector2(flattenedPos.magnitude, Mathf.Atan2(flattenedPos.x, flattenedPos.y));
 	}
 
-	public Vector3 GetWorldCoordinate(Vector2 polarPos)
+	public static Vector3 GetWorldCoordinate(Vector2 polarPos)
 	{
 		return new Vector3(polarPos.x * Mathf.Sin(polarPos.y), polarPos.x * Mathf.Cos(polarPos.y), 0);
 	}

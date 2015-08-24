@@ -67,10 +67,10 @@ public class SerpentController : MonoBehaviour {
 
     private void AttractModeUpdate()
     {
-        Vector2 polar = World.Instance.GetPolarCoordinate(transform.position);
+        Vector2 polar = World.GetPolarCoordinate(transform.position);
         polar.y += 10.0f * Mathf.Deg2Rad;
         polar.x = World.Instance.GetSeaLevel(polar.y) - 2.0f;
-        Vector3 target = World.Instance.GetWorldCoordinate(polar);
+        Vector3 target = World.GetWorldCoordinate(polar);
         mSerpent.MoveToward(target);
     }
 }

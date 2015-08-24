@@ -29,7 +29,7 @@ public class BaseProjectile : MonoBehaviour, IDamaging {
 		{
 			ApplyGravity();
 			transform.LookAt(transform.position + mRigidbody.velocity);
-			float seaLevel = World.Instance.GetSeaLevel(World.Instance.GetPolarCoordinate(transform.position).y);
+			float seaLevel = World.Instance.GetSeaLevel(World.GetPolarCoordinate(transform.position).y);
 			if(transform.position.magnitude < seaLevel)
 			{
 				mRigidbody.drag = mUnderWaterDrag;

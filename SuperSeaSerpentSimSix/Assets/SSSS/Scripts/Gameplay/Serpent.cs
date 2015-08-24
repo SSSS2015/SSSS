@@ -294,5 +294,9 @@ public class Serpent : SerpentSegment {
 			mAnimator.SetTrigger("Bite");
 			eatable.BeEaten(this);
 		}
+        else
+        {
+            base.OnCollisionEnter(c);
+        }
 	}
 }

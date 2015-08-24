@@ -64,7 +64,7 @@ public class Sector
 
 	public GameObject SpawnEntity(GameObject prefab, Vector2 polarPos)
 	{
-		Vector3 worldPos = mWorld.GetWorldCoordinate(polarPos);
+		Vector3 worldPos = World.GetWorldCoordinate(polarPos);
 		Vector3 up = worldPos.normalized;
 		Quaternion rot = Quaternion.LookRotation(Vector3.forward*((Random.value > 0.5f)?1:-1), up);
 		GameObject obj = GameObject.Instantiate(prefab, worldPos, rot) as GameObject;

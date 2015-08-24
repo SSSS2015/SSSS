@@ -104,7 +104,7 @@ public class SpringGrid : MonoBehaviour
                 float theta = Mathf.Lerp(Theta, Theta + kThetaDelta, x * xScale);
                 float height = Mathf.Lerp(kInnerRadius, kOuterRadius, y * yScale);
 
-                Vector3 pos = World.Instance.GetWorldCoordinate(new Vector2(height, theta * Mathf.Deg2Rad));
+                Vector3 pos = World.GetWorldCoordinate(new Vector2(height, theta * Mathf.Deg2Rad));
 
                 thisNode.Pos = thisNode.Origin = pos;
                 thisNode.Velocity = Vector3.zero;
@@ -414,12 +414,12 @@ public class SpringGrid : MonoBehaviour
         const int y = kGridHeight - 1;
 
         SpringNode prevNode = Nodes[GridIdx(0, y)];
-        Vector2 prevPolar = World.Instance.GetPolarCoordinate(prevNode.Pos);
+        Vector2 prevPolar = World.GetPolarCoordinate(prevNode.Pos);
 
         for(int x = 1; x < kGridWidth; ++x)
         {
             SpringNode curNode = Nodes[GridIdx(x, y)];
-            Vector2 curPolar = World.Instance.GetPolarCoordinate(curNode.Pos);
+            Vector2 curPolar = World.GetPolarCoordinate(curNode.Pos);
 
             // Check if this segment is forward facing
             float polarDiff = curPolar.y - prevPolar.y;
