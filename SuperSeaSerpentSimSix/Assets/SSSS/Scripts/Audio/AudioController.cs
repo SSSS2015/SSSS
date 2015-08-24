@@ -9,11 +9,18 @@ public class AudioController : MonoBehaviour {
 			return _instance;
 		}
 	}
-	
+
+	//Snapshots
+	public AudioMixerSnapshot TitleSnapshot;
+	public AudioMixerSnapshot InGameSnapshot;
+	public AudioMixerSnapshot GameOverSnapshot;
+
+	//SoundPlayers
 	public AudioSource sfxPlayer;
 	public AudioSource roarPlayer;
 	public AudioSource wavesPlayer;
 
+	//Clips
 	public AudioClip sfx_pickup_fish;
 	public AudioClip sfx_pickup_crate;
 	public AudioClip sfx_hurt;
@@ -35,6 +42,19 @@ public class AudioController : MonoBehaviour {
 
 	public AudioController(){
 		sfxPlayer = new AudioSource ();
+	}
+
+	//such repetition, wow.
+	public void ToTitleSnapshot(float s = 0){
+		TitleSnapshot.TransitionTo (s);
+	}
+
+	public void ToInGameSnapshot(float s = 0){
+		InGameSnapshot.TransitionTo (s);
+	}
+
+	public void ToGameOverSnapshot(float s = 0){
+		GameOverSnapshot.TransitionTo (s);
 	}
 	
 	public void PlaySfx(AudioClip clip){

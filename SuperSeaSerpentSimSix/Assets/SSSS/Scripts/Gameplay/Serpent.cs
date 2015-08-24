@@ -273,6 +273,7 @@ public class Serpent : SerpentSegment {
 		{
 			mHealth = 0;
 			// Death
+			AudioController.Instance.ToGameOverSnapshot(3);
 		}
 	}
 

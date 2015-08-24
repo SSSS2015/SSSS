@@ -1484,6 +1484,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99068b7ab62ab894abd24ec90903b77f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TitleSnapshot: {fileID: 24500003, guid: 373509e4d8b27084b83811ca0136bc9a, type: 2}
+  InGameSnapshot: {fileID: 24523664, guid: 373509e4d8b27084b83811ca0136bc9a, type: 2}
+  GameOverSnapshot: {fileID: 24538278, guid: 373509e4d8b27084b83811ca0136bc9a, type: 2}
   sfxPlayer: {fileID: 2012089519}
   roarPlayer: {fileID: 667101719}
   wavesPlayer: {fileID: 574687689}
@@ -2597,7 +2600,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -235.480713
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_SizeDelta.y
