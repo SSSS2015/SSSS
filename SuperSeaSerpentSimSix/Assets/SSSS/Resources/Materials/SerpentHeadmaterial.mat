@@ -83,7 +83,14 @@ Material:
         first:
           name: _PaperTexture
         second:
-          m_Texture: {fileID: 2800000, guid: c41835ebb036b4b42b50f7dcc34d000f, type: 3}
+          m_Texture: {fileID: 2800000, guid: 764c5d7b6829a44a797775b1987270d2, type: 3}
+          m_Scale: {x: 2, y: 2}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Texture_with_alpha
+        second:
+          m_Texture: {fileID: 2800000, guid: 3dcfcd1d8993ef74cbc74b6770c32f5f, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -98,13 +105,6 @@ Material:
           name: _LightingRamp
         second:
           m_Texture: {fileID: 2800000, guid: 1d18eb23668704101969afc658edc54c, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Texture_with_alpha
-        second:
-          m_Texture: {fileID: 2800000, guid: 3dcfcd1d8993ef74cbc74b6770c32f5f, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -170,26 +170,6 @@ Material:
         second: 0
       data:
         first:
-          name: _paperTextureTiling
-        second: .389999986
-      data:
-        first:
-          name: _VerticalOffset
-        second: 1.00999999
-      data:
-        first:
-          name: _HorizontalOffset
-        second: 1.21000004
-      data:
-        first:
-          name: _ShadowOfset
-        second: .0469999984
-      data:
-        first:
-          name: _DropShadowOpacity
-        second: .307999998
-      data:
-        first:
           name: _TimeScale
         second: 0
       data:
@@ -226,8 +206,24 @@ Material:
         second: 15
       data:
         first:
+          name: _paperTextureTiling
+        second: .389999986
+      data:
+        first:
           name: _OutlineWidth
         second: .0299999993
+      data:
+        first:
+          name: _VerticalOffset
+        second: 1.00999999
+      data:
+        first:
+          name: _HorizontalOffset
+        second: 1.21000004
+      data:
+        first:
+          name: _ShadowOfset
+        second: .0469999984
       data:
         first:
           name: _node_5430
@@ -238,8 +234,12 @@ Material:
         second: .218999997
       data:
         first:
+          name: _DropShadowOpacity
+        second: 1
+      data:
+        first:
           name: _EyeBrightness
-        second: 0
+        second: 1.38999999
       data:
         first:
           name: _DamageAmount
@@ -424,7 +424,7 @@ Material:
       data:
         first:
           name: _DropShadowColor
-        second: {r: .301470578, g: .301470578, b: .301470578, a: 1}
+        second: {r: .0974264741, g: .25, b: .231059849, a: 1}
       data:
         first:
           name: _HueVariation
@@ -436,7 +436,7 @@ Material:
       data:
         first:
           name: _EyeColor
-        second: {r: .5, g: .5, b: .5, a: 1}
+        second: {r: 1, g: .103448287, b: 0, a: 1}
       data:
         first:
           name: _DamageColor
