@@ -155,10 +155,6 @@ Material:
         second: .349999994
       data:
         first:
-          name: _OutlineWidth
-        second: .0350000001
-      data:
-        first:
           name: _VerticalOffset
         second: 1.44000006
       data:
@@ -173,6 +169,18 @@ Material:
         first:
           name: _DropShadowOpacity
         second: 0
+      data:
+        first:
+          name: _OutlineWidth
+        second: .0350000001
+      data:
+        first:
+          name: _EyeBrightness
+        second: 0
+      data:
+        first:
+          name: _DamageAmount
+        second: 0
     m_Colors:
       data:
         first:
@@ -186,3 +194,11 @@ Material:
         first:
           name: _DropShadowColor
         second: {r: .301470578, g: .301470578, b: .301470578, a: 1}
+      data:
+        first:
+          name: _EyeColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _DamageColor
+        second: {r: 1, g: .0882353187, b: .0882353187, a: 1}
