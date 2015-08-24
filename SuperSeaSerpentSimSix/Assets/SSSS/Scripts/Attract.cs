@@ -8,17 +8,11 @@ public class Attract : MonoBehaviour
     private bool mInGame;
     private bool mStartGame;
 
-    private float mTimer = 5.0f;
-
 	// Update is called once per frame
 	void Update ()
     {
         if (mInGame)
             return;
-
-        mTimer -= Time.deltaTime;
-        if (mTimer < 0)
-            mStartGame = true;
 
         if(mStartGame)
         {
@@ -26,6 +20,11 @@ public class Attract : MonoBehaviour
             StartGame();
         }
 	}
+
+    public void StartGameClicked()
+    {
+        mStartGame = true;
+    }
 
     private void StartGame()
     {
