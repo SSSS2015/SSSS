@@ -31,6 +31,15 @@ public class World : MonoBehaviour {
 
 	public ScoreManager mScoreManager = new ScoreManager();
 
+    public GameObject[] mIslands;
+    public float mIslandZ = 11;
+    public int mNumIslandsPerSector = 2;
+
+    public GameObject[] mClouds;
+    public Vector3 mCloudPosMin;
+    public Vector3 mCloudPosMax;
+    public int mNumCloudsPerSector = 2;
+
     private WaveManager mWaveManager;
 
 	public void Awake()
@@ -55,7 +64,65 @@ public class World : MonoBehaviour {
 		mSectors[GetLeftSectorIndex(mCurrentSector)].Generate(difficulty);
 		mSectors[mCurrentSector].Generate(difficulty);
 		mSectors[GetRightSectorIndex(mCurrentSector)].Generate(difficulty);
+
+        if(mIslands.Length > 0)
+        {
+            for (int i = 0; i < mNumSectors; ++i)
+            {
+                float thetaStart = mSectorSize * i;
+                float thetaEnd = mSectorSize * (i + 1);
+                for(int island = 0; island < mNumIslandsPerSector; ++island)
+                {
+                    SpawnIsland( Random.Range(thetaStart, thetaEnd) );
+                }
+            }
+        }
+
+        if(mClouds.Length > 0)
+        {
+            for(int i = 0; i < mNumSectors; ++i)
+            {
+                float thetaStart = mSectorSize * i;
+                float thetaEnd = mSectorSize * (i + 1);
+                for(int cloud = 0; cloud < mNumCloudsPerSector; ++cloud)
+                {
+                    SpawnCloud(Random.Range(thetaStart, thetaEnd));
+                }
+            }
+        }
 	}
+
+    private void SpawnIsland(float theta)
+    {
+        int islandIndex = Random.Range(0, mIslands.Length - 1);
+
+        GameObject island = GameObject.Instantiate(mIslands[islandIndex]);
+        Vector3 islandPosition = World.GetWorldCoordinate(new Vector2(SeaLevel, theta));
+
+        island.transform.position = new Vector3(islandPosition.x, islandPosition.y, mIslandZ);
+        island.transform.localRotation = Quaternion.LookRotation(Vector3.forward, islandPosition.normalized);
+
+        // declutter the scene
+        island.transform.parent = transform;
+    }
+
+    private void SpawnCloud(float theta)
+    {
+        float x = Random.Range(mCloudPosMin.x, mCloudPosMax.x);
+        float y = Random.Range(mCloudPosMin.y, mCloudPosMax.y);
+        float z = Random.Range(mCloudPosMin.z, mCloudPosMax.z);
+        float scale = x; // Temp
+
+        int cloudIndex = Random.Range(0, mClouds.Length - 1);
+        GameObject cloud = GameObject.Instantiate(mClouds[cloudIndex]);
+        Vector3 cloudPosition = World.GetWorldCoordinate(new Vector2(SeaLevel + y, theta));
+
+        cloud.transform.position = new Vector3(cloudPosition.x, cloudPosition.y, z);
+        cloud.transform.localRotation = Quaternion.LookRotation(Vector3.forward, cloudPosition.normalized);
+
+        // declutter the scene
+        cloud.transform.parent = transform;
+    }
 
 	public void Update()
 	{

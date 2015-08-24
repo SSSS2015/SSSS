@@ -111,6 +111,17 @@ MonoBehaviour:
   mSegmentsPerDifficultyLevel: 3
   mSplashPrefab: {fileID: 118906, guid: 4e578c338f7ab5e40a07683044d44087, type: 2}
   mMinSplashSpeed: 1
+  mIslands:
+  - {fileID: 162218, guid: fb4c3e46a2a4941f195eed09c32dd06b, type: 2}
+  - {fileID: 132270, guid: 83db00f9434134bfe9c5858272c2f7bf, type: 2}
+  - {fileID: 111370, guid: cf64ca8f0e7c64cc489c62e35670e932, type: 2}
+  - {fileID: 118310, guid: 4169ef548c6a748e1ae62033ec93b244, type: 2}
+  mIslandZ: 11
+  mNumIslandsPerSector: 4
+  mClouds: []
+  mCloudPosMin: {x: 0, y: 0, z: 0}
+  mCloudPosMax: {x: 0, y: 0, z: 0}
+  mNumCloudsPerSector: 2
 --- !u!114 &11457170
 MonoBehaviour:
   m_ObjectHideFlags: 1
