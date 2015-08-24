@@ -93,4 +93,52 @@ public class WaveManager : MonoBehaviour
             Grids[i].TransferToMesh();
         }
 	}
+
+    public float GetSeaLevel(float thetaRadians)
+    {
+        // Find the highest forward line segment at that theta
+        float thetaDegrees = thetaRadians * Mathf.Rad2Deg;
+        float searchBegin = thetaDegrees - 10.0f;
+
+        // each segment is 20 degrees
+        int segment = Mathf.FloorToInt(searchBegin / 20.0f);
+        if (segment < 0)
+            segment += kNumSegments;
+
+        // wat
+        if (segment >= kNumSegments)
+        {
+            Debug.LogErrorFormat("WaveManager::SeaLevel: theta {0} gives strange start segment, returning default", thetaDegrees);
+            return World.Instance.SeaLevel;
+        }
+
+        // Search 2 grids to find matching segments at sea level
+        float seaLevel = -1;  // any negative number works, sea level is always >= 0
+        for(int i = 0; i < 2; ++i)
+        {
+            Grids[segment].SeaLevel(thetaRadians, ref seaLevel);
+
+            segment++;
+            if(segment == kNumSegments)
+                segment = 0;
+        }
+
+        if (seaLevel < 0)
+        {
+            Debug.LogErrorFormat("WaveManager::SeaLevel: Couldn't find segment for theta {0}, returning default", thetaDegrees);
+            return World.Instance.SeaLevel;
+        }
+
+        // The water texture is slightly below the polygon edge
+        seaLevel -= 0.5f;
+
+        //Debugging gizmos
+        /* 
+        Vector3 worldPoint = World.Instance.GetWorldCoordinate(new Vector2(seaLevel, thetaRadians));
+        Vector3 worldPoint2 = World.Instance.GetWorldCoordinate(new Vector2(seaLevel + 10, thetaRadians));
+        Debug.DrawLine(worldPoint, worldPoint2, Color.red);
+         */
+
+        return seaLevel;
+    }
 }

@@ -26,6 +26,8 @@ public class World : MonoBehaviour {
 
 	public ScoreManager mScoreManager = new ScoreManager();
 
+    private WaveManager mWaveManager;
+
 	public void Awake()
 	{
 		if(sInstance != null)
@@ -42,6 +44,8 @@ public class World : MonoBehaviour {
 		{
 			mSectors[i] = new Sector(this, i);
 		}
+
+        mWaveManager = FindObjectOfType<WaveManager>();
 	}
 
 	public void Start()
@@ -110,4 +114,16 @@ public class World : MonoBehaviour {
 	{
 		return new Vector3(polarPos.x * Mathf.Sin(polarPos.y), polarPos.x * Mathf.Cos(polarPos.y), 0);
 	}
+
+    public float GetSeaLevel(float thetaRadians)
+    {
+        if(mWaveManager != null)
+        {
+            return mWaveManager.GetSeaLevel(thetaRadians);
+        }
+        else
+        {
+            return SeaLevel;
+        }
+    }
 }

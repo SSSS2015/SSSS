@@ -33,6 +33,7 @@ public class BaseSeaCreature : MonoBehaviour {
 	
 	public bool IsAboveWater()
 	{
-		return transform.localPosition.magnitude >= World.Instance.SeaLevel;
+        Vector2 polarCoords = World.Instance.GetPolarCoordinate(transform.position);
+		return polarCoords.x >= World.Instance.GetSeaLevel(polarCoords.y);
 	}
 }

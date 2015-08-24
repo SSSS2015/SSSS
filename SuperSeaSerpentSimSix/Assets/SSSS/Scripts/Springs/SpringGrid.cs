@@ -401,11 +401,51 @@ public class SpringGrid : MonoBehaviour
     public bool InBounds(Vector3 pos, float slop)
     {
         Bounds b = MyMesh.bounds;
-        Vector3 center = b.center;
         Bounds zBounds = new Bounds(b.center, new Vector3(0, 0, 200));
         b.Expand(slop);
         b.Encapsulate(zBounds);
         
         return b.Contains(pos);
+    }
+
+    public void SeaLevel(float thetaRadians, ref float prevBest)
+    {
+        // TODO: check if this should be 0 or kGridHeight-1
+        const int y = kGridHeight - 1;
+
+        SpringNode prevNode = Nodes[GridIdx(0, y)];
+        Vector2 prevPolar = World.Instance.GetPolarCoordinate(prevNode.Pos);
+
+        for(int x = 1; x < kGridWidth; ++x)
+        {
+            SpringNode curNode = Nodes[GridIdx(x, y)];
+            Vector2 curPolar = World.Instance.GetPolarCoordinate(curNode.Pos);
+
+            // Check if this segment is forward facing
+            float polarDiff = curPolar.y - prevPolar.y;
+            if (polarDiff < -Mathf.PI)
+                polarDiff += Mathf.PI * 2;
+
+            if(polarDiff >= 0 && polarDiff < Mathf.PI)
+            {
+                // Check if the selected point is inside this line segment
+                float pointDiff = thetaRadians - prevPolar.y;
+                if (pointDiff < -Mathf.PI)
+                    polarDiff += Mathf.PI * 2;
+
+                if(pointDiff >= 0 && pointDiff <= polarDiff)
+                {
+                    // point is inside forward facing line segment, get sea level at that point
+                    float newSeaLevel = curPolar.x;
+                    if (polarDiff > 0.001f)
+                        newSeaLevel = Mathf.Lerp(prevPolar.x, curPolar.x, pointDiff / polarDiff);
+
+                    if (newSeaLevel > prevBest)
+                        prevBest = newSeaLevel;
+                }
+            }
+
+            prevPolar = curPolar;
+        }
     }
 }
