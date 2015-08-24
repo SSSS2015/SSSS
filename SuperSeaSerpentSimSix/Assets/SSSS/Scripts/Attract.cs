@@ -7,12 +7,20 @@ public class Attract : MonoBehaviour
 
     private bool mInGame;
     private bool mStartGame;
+    private bool mGameOver;
+    private Serpent mSerpent;
 
 	// Update is called once per frame
 	void Update ()
     {
-        if (mInGame)
+        if (mGameOver)
             return;
+
+        if (mInGame)
+        {
+            CheckForGameOver();
+            return;
+        }
 
         if(mStartGame)
         {
@@ -30,6 +38,7 @@ public class Attract : MonoBehaviour
     {
         SerpentController controller = FindObjectOfType<SerpentController>();
         controller.mAttract = false;
+        mSerpent = controller.GetComponent<Serpent>();
 
         GameObject canvas = GameObject.Find("/Canvas-MainUI");
         Transform mainUI = canvas.transform.Find("MainUI");
@@ -41,4 +50,14 @@ public class Attract : MonoBehaviour
         mInGame = true;
     }
 
+    private void CheckForGameOver()
+    {
+        if(mSerpent.Health == 0)
+        {
+            // game is over
+            GameObject canvas = GameObject.Find("/Canvas-MainUI");
+            Transform gameOverUI = canvas.transform.Find("GameOverUI");
+            gameOverUI.gameObject.SetActive(true);
+        }
+    }
 }
