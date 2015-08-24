@@ -1,40 +1,15 @@
 fileFormatVersion: 2
-guid: 012600f022d904f1fb26917f31921949
-timeCreated: 1440368428
+guid: a0e9f84a494a44c4ea9ecc8ab38b1b3e
+timeCreated: 1440387554
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cube (2)
-    100004: Cube (3)
-    100006: Head
-    100008: Mesh
-    100010: Mesh (2)
-    100012: Segment
-    100014: Texture Group
     400000: //RootNode
-    400002: Cube (2)
-    400004: Cube (3)
-    400006: Head
-    400008: Mesh
-    400010: Mesh (2)
-    400012: Segment
-    400014: Texture Group
     2300000: //RootNode
-    2300002: Cube (3)
-    2300004: Head
-    2300006: Mesh (2)
-    2300008: Segment
     3300000: //RootNode
-    3300002: Cube (3)
-    3300004: Head
-    3300006: Mesh (2)
-    3300008: Segment
-    4300000: Segment
-    4300002: Cube (3)
-    4300004: Head
-    4300006: Mesh (2)
+    4300000: Tail
   materials:
     importMaterials: 1
     materialName: 0
