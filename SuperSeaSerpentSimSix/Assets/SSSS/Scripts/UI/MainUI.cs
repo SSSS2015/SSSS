@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections;
 
 public class MainUI : MonoBehaviour {
@@ -13,6 +14,11 @@ public class MainUI : MonoBehaviour {
 	protected int mDisplayNextSegment = -1;
 
 	protected World mWorld;
+
+	protected bool mIsPaused = false;
+
+	public GameObject mPauseDisplay;
+	public Button mPauseButton;
 
 	public void Start()
 	{
@@ -35,6 +41,21 @@ public class MainUI : MonoBehaviour {
 		{
 			mDisplayNextSegment = mWorld.mSerpent.NextGrowthCounter;
 			mNexSegmentText.text = string.Format("{0}/{1}", mWorld.mSerpent.NextGrowthCounter, mWorld.mSerpent.NextGrowthNeed);
+		}
+	}
+
+	public void TogglePause()
+	{
+		mIsPaused = !mIsPaused;
+		if(mIsPaused)
+		{
+			Time.timeScale = 0.0f;
+			mPauseDisplay.SetActive(true);
+		}
+		else
+		{
+			Time.timeScale = 1.0f;
+			mPauseDisplay.SetActive(false);
 		}
 	}
 }
