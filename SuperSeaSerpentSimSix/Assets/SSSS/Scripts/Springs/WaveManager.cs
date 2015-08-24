@@ -73,7 +73,7 @@ public class WaveManager : MonoBehaviour
                 if (grid.InBounds(playerPos, ForceDist))
                 {
                     float speed = Player.velocity.magnitude * (1.0f / 10.0f); // 10.0f = player max speed
-                    grid.AddOutwardForce(new Vector2(playerPos.x, playerPos.y), ForceDist * speed, ForcePower * speed);
+                    grid.AddOutwardForce(new Vector2(playerPos.x, playerPos.y), ForceDist * speed, ForcePower * speed * Time.deltaTime);
                 }
             }
         }
