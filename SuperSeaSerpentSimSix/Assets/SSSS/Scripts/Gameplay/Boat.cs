@@ -12,6 +12,7 @@ public class Boat : MonoBehaviour {
 	protected float mCapsizeTimer = 0.0f;
 
 	public GameObject[] mPeoplePrefabs;
+	public Transform[] mSpawnPositions;
 
 	public void Awake()
 	{
