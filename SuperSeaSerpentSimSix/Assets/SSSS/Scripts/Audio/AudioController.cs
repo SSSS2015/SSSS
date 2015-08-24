@@ -50,7 +50,7 @@ public class AudioController : MonoBehaviour {
 	public void Update(){
 		if (returnToPeaceTime != 0 && Time.time >= returnToPeaceTime) {
 			returnToPeaceTime = 0;
-			PeaceSnapshot.TransitionTo(1);
+			PeaceSnapshot.TransitionTo(4);
 		}
 	}
 

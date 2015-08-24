@@ -1597,7 +1597,7 @@ MonoBehaviour:
   BattleSnapshot: {fileID: 24503982, guid: 373509e4d8b27084b83811ca0136bc9a, type: 2}
   InGameSnapshot: {fileID: 24523664, guid: 373509e4d8b27084b83811ca0136bc9a, type: 2}
   GameOverSnapshot: {fileID: 24538278, guid: 373509e4d8b27084b83811ca0136bc9a, type: 2}
-  BattleSnapshotLength: 64
+  BattleSnapshotLength: 16
   bgmBPM: 124
   sfxPlayer: {fileID: 2012089519}
   roarPlayer: {fileID: 667101719}
@@ -2806,11 +2806,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_SizeDelta.y
@@ -2818,7 +2818,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_SizeDelta.x
-      value: -296.405884
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 144d94f58906f694e9855957be398f7d, type: 2}

@@ -285,12 +285,12 @@ public class Serpent : SerpentSegment {
 		mHealth -= damageAmount;
 		mDamageAffectTimer = mDamageAffectTime;
 		AudioController.Instance.PlayHurtSfx ();
-		AudioController.Instance.ToBattleSnapshot(1);
-		if(mHealth <= 0)
-		{
+		if (mHealth <= 0) {
 			mHealth = 0;
 			// Death
-			AudioController.Instance.ToGameOverSnapshot(3);
+			AudioController.Instance.ToGameOverSnapshot (2);
+		} else {	
+			AudioController.Instance.ToBattleSnapshot (1);
 		}
 	}
 
