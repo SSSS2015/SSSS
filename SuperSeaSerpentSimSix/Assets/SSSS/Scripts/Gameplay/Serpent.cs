@@ -264,6 +264,11 @@ public class Serpent : SerpentSegment {
 
 	public void Heal(int healAmount = 1)
 	{
+		if(mHealth <= 0)
+		{
+			return;
+		}
+
 		mHealth = Mathf.Min(mHealth + healAmount, MaxHealth);
 	}
 

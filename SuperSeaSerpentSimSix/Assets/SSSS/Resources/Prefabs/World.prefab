@@ -44,8 +44,37 @@ MonoBehaviour:
   mSeaBackground: {fileID: 0}
   mSeaBed: {fileID: 0}
   mNumSectors: 8
-  mFishPrefab: {fileID: 118728, guid: 3c8a36164206a2b46bf8f3b605b9dd1f, type: 2}
-  mBoatPrefab: {fileID: 130620, guid: ade716e6cac3f8b41add1643f87dc74b, type: 2}
+  mDifficultyStages:
+  - mMinSeaCreaturesToSpawn: 15
+    mMaxSeaCreaturesToSpawn: 20
+    mMinBoatToSpawn: 5
+    mMaxBoatToSpawn: 10
+    mSeaCreaturePrefabs:
+    - {fileID: 118728, guid: 3c8a36164206a2b46bf8f3b605b9dd1f, type: 2}
+    mBoatPrefabs:
+    - {fileID: 130620, guid: ade716e6cac3f8b41add1643f87dc74b, type: 2}
+  - mMinSeaCreaturesToSpawn: 10
+    mMaxSeaCreaturesToSpawn: 15
+    mMinBoatToSpawn: 10
+    mMaxBoatToSpawn: 15
+    mSeaCreaturePrefabs:
+    - {fileID: 118728, guid: 3c8a36164206a2b46bf8f3b605b9dd1f, type: 2}
+    - {fileID: 118728, guid: df9cb8884bababa44a024b4a4d6acad5, type: 2}
+    mBoatPrefabs:
+    - {fileID: 130620, guid: ade716e6cac3f8b41add1643f87dc74b, type: 2}
+    - {fileID: 199534, guid: ffb6a94d245bed84291394641a003b52, type: 2}
+  - mMinSeaCreaturesToSpawn: 5
+    mMaxSeaCreaturesToSpawn: 10
+    mMinBoatToSpawn: 15
+    mMaxBoatToSpawn: 20
+    mSeaCreaturePrefabs:
+    - {fileID: 118728, guid: 3c8a36164206a2b46bf8f3b605b9dd1f, type: 2}
+    - {fileID: 118728, guid: df9cb8884bababa44a024b4a4d6acad5, type: 2}
+    - {fileID: 118728, guid: cadb9d47eaad16043a9e84bd2776ceab, type: 2}
+    mBoatPrefabs:
+    - {fileID: 199534, guid: ffb6a94d245bed84291394641a003b52, type: 2}
+    - {fileID: 170246, guid: d70f49a8601bbfd4b9ff86ab54503518, type: 2}
+  mSegmentsPerDifficultyLevel: 3
   mSplashPrefab: {fileID: 118906, guid: 4e578c338f7ab5e40a07683044d44087, type: 2}
   mMinSplashSpeed: 1
 --- !u!114 &11457170
