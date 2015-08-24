@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SerpentHeadmaterial
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 27c351e5844284aa5a787e9a5fc33c3e, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2450
@@ -90,7 +90,21 @@ Material:
         first:
           name: _PaperTexture
         second:
-          m_Texture: {fileID: 2800000, guid: 3dcfcd1d8993ef74cbc74b6770c32f5f, type: 3}
+          m_Texture: {fileID: 2800000, guid: c41835ebb036b4b42b50f7dcc34d000f, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DiffuseTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: e776d8ef677a24a49a1ba7653d552d82, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _LightingRamp
+        second:
+          m_Texture: {fileID: 2800000, guid: 1d18eb23668704101969afc658edc54c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -190,6 +204,38 @@ Material:
         first:
           name: _ColorMask
         second: 15
+      data:
+        first:
+          name: _paperTextureTiling
+        second: .389999986
+      data:
+        first:
+          name: _OutlineWidth
+        second: .0299999993
+      data:
+        first:
+          name: _VerticalOffset
+        second: 1.00999999
+      data:
+        first:
+          name: _HorizontalOffset
+        second: 1.21000004
+      data:
+        first:
+          name: _ShadowOfset
+        second: .0469999984
+      data:
+        first:
+          name: _node_5430
+        second: .782000005
+      data:
+        first:
+          name: _node_1558
+        second: .218999997
+      data:
+        first:
+          name: _DropShadowOpacity
+        second: .307999998
     m_Colors:
       data:
         first:
@@ -375,3 +421,7 @@ Material:
         first:
           name: _EmisColor
         second: {r: .200000003, g: .200000003, b: .200000003, a: 0}
+      data:
+        first:
+          name: _DropShadowColor
+        second: {r: .301470578, g: .301470578, b: .301470578, a: 1}
