@@ -266,6 +266,7 @@ public class Serpent : SerpentSegment {
 	public void TakeDamage(int damageAmount = 1)
 	{
 		mHealth -= damageAmount;
+		AudioController.Instance.PlayHurtSfx ();
 		if(mHealth <= 0)
 		{
 			mHealth = 0;
