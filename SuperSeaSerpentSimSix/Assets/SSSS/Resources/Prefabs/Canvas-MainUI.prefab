@@ -339,12 +339,12 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: c0337918660c948af822fe7400f13d40, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 3
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Score: 0'
@@ -480,12 +480,12 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: c0337918660c948af822fe7400f13d40, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 3
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Health: 99/99'
@@ -553,12 +553,12 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: c0337918660c948af822fe7400f13d40, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 3
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Next Segment: 99/99'
@@ -605,7 +605,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: .831034482, g: .831034482, b: .831034482, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: .686206877, g: .686206877, b: .686206877, a: 1}
     m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
@@ -1056,8 +1056,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 10}
-  m_SizeDelta: {x: 800, y: 50}
+  m_AnchoredPosition: {x: 10, y: 5}
+  m_SizeDelta: {x: 800, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &22455880
 RectTransform:
@@ -1166,8 +1166,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -15}
-  m_SizeDelta: {x: 800, y: 50}
+  m_AnchoredPosition: {x: 10, y: -10}
+  m_SizeDelta: {x: 800, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &22486414
 RectTransform:
@@ -1201,8 +1201,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -100}
-  m_SizeDelta: {x: 800, y: 50}
+  m_AnchoredPosition: {x: 10, y: -40}
+  m_SizeDelta: {x: 800, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &22497760
 RectTransform:
