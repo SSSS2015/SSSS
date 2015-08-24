@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 4d3f8431b354446fead5c59be064e4d7
-timeCreated: 1440400712
+guid: 50795961b2fa5b14699f5fe01fb9b3e4
+timeCreated: 1440400758
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,8 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: boat_small_motor
-    4300002: boat_outboard
+    4300000: boat_small_motor (3)
   materials:
     importMaterials: 1
     materialName: 0

@@ -150,7 +150,9 @@ public class Serpent : SerpentSegment {
 	public void SpawnSkull()
 	{
 		LinkedListNode<SerpentSegment> tail = mSegments.Last;
-		Quaternion rot = Quaternion.LookRotation(Vector3.forward, transform.position.normalized);
+		Vector3 up = Random.onUnitSphere;
+		up.Normalize();
+		Quaternion rot = Quaternion.LookRotation(Vector3.forward, up);
 		GameObject skullObj = Instantiate(mSkullPrefab, tail.Value.transform.position, rot) as GameObject;
 		Destroy(skullObj, 10.0f);
 	}
