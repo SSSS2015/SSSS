@@ -1493,8 +1493,8 @@ MonoBehaviour:
   sfx_pickup_fish: {fileID: 8300000, guid: 4933809d37a0d7c409e04ef82b2b361b, type: 3}
   sfx_pickup_crate: {fileID: 8300000, guid: f382ed7f556449f44a21b3029eb8949e, type: 3}
   sfx_hurt: {fileID: 8300000, guid: c0d82562a34e4744383bc9fc8f997184, type: 3}
-  sfx_menu_confirm: {fileID: 8300000, guid: 30a9f9d8fbaecbd4e86df53d7c3d1685, type: 3}
-  sfx_splash: {fileID: 8300000, guid: e51b5edc5e9dc5e489989f219b71c913, type: 3}
+  sfx_menu_confirm: {fileID: 8300000, guid: 35dccbd3fac03124babac660dcc2771f, type: 3}
+  sfx_splash: {fileID: 8300000, guid: dbbe5a372d133654eb64da0dd5541dec, type: 3}
   roars:
   - {fileID: 8300000, guid: 2197a03942d848343aeb876c65cb18c4, type: 3}
   - {fileID: 8300000, guid: adae87c1f4d7bf040a3546c6cf6789f6, type: 3}
@@ -2600,7 +2600,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_SizeDelta.x
-      value: -235.480713
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_SizeDelta.y
@@ -2608,7 +2608,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22415452, guid: 144d94f58906f694e9855957be398f7d, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -235.480713
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 144d94f58906f694e9855957be398f7d, type: 2}
