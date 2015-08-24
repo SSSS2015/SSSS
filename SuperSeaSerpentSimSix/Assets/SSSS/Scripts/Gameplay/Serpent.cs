@@ -29,6 +29,9 @@ public class Serpent : SerpentSegment {
 	public float mUndulationTime = 1.0f;
 	protected float mUndulationTimer = 0.0f; 
 
+	public float mDamageAffectTime = 0.5f;
+	protected float mDamageAffectTimer = 0.0f;
+
 	public float mSegmentGrowthProgressTime = 0.5f;
 	protected float mSegmentGrowthProgressTimer = 0.0f;
 
@@ -176,6 +179,21 @@ public class Serpent : SerpentSegment {
 
 	public void Update()
 	{
+		if(mDamageAffectTimer > 0.0f)
+		{
+			mDamageAffectTimer -= Time.deltaTime;
+			SetDamageAffect(Random.value);
+		}
+		else
+		{
+			SetDamageAffect(0);
+		}
+		
+		if(mHealth <= 0)
+		{
+			return;
+		}
+
 		if(mSegmentGrowths.Count <= 0)
 		{
 			mSegmentGrowthProgressTimer = 0.0f;
@@ -267,6 +285,7 @@ public class Serpent : SerpentSegment {
 	public void TakeDamage(int damageAmount = 1)
 	{
 		mHealth -= damageAmount;
+		mDamageAffectTimer = mDamageAffectTime;
 		AudioController.Instance.PlayHurtSfx ();
 		if(mHealth <= 0)
 		{
@@ -298,5 +317,14 @@ public class Serpent : SerpentSegment {
         {
             base.OnCollisionEnter(c);
         }
+	}
+
+	public void SetDamageAffect(float amount)
+	{
+		mRenderer.material.SetFloat("_DamageAmount", amount);
+		foreach(var segment in mSegments)
+		{
+			segment.mRenderer.material.SetFloat("_DamageAmount", amount);
+		}
 	}
 }
