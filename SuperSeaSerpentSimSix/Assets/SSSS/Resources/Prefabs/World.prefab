@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 486442}
   - 114: {fileID: 11442632}
+  - 114: {fileID: 11457170}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -48,6 +49,18 @@ MonoBehaviour:
   mPersonPrefab: {fileID: 195902, guid: 89bbc0e77bab8d6448630765434d1f96, type: 2}
   mSplashPrefab: {fileID: 118906, guid: 4e578c338f7ab5e40a07683044d44087, type: 2}
   mMinSplashSpeed: 1
+--- !u!114 &11457170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb506c46d2ce7740817444fc2d26aeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TitlescreenUI: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SerpentController : MonoBehaviour {
 	public Serpent mSerpent;
+    public bool mAttract = false;
 
 	protected Plane mControlPlane;
 	protected Rect mScreenArea;
@@ -22,8 +23,20 @@ public class SerpentController : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	public void Update () {
+	public void Update ()
+    {
+        if(mAttract)
+        {
+            AttractModeUpdate();
+        }
+        else
+        {
+            GameModeUpdate();
+        }
+    }
 
+    private void GameModeUpdate()
+    {
 		Vector3 mousePos = Input.mousePosition;
 		//if(mScreenArea.Contains(mousePos))
 		//{
@@ -51,4 +64,13 @@ public class SerpentController : MonoBehaviour {
 		}
 		*/
 	}
+
+    private void AttractModeUpdate()
+    {
+        Vector2 polar = World.Instance.GetPolarCoordinate(transform.position);
+        polar.y += 10.0f * Mathf.Deg2Rad;
+        polar.x = World.Instance.GetSeaLevel(polar.y) - 2.0f;
+        Vector3 target = World.Instance.GetWorldCoordinate(polar);
+        mSerpent.MoveToward(target);
+    }
 }
