@@ -81,7 +81,7 @@ Shader "SeaSerpent/Paper_environmentObject" {
 				////// Lighting:
                 float4 _PaperTexture_var = tex2D(_PaperTexture,TRANSFORM_TEX(node_328, _PaperTexture));
                 
-                float node_4465 = 45.0; // Fog End
+                float node_4465 = 50.0; // Fog End
                 float3 finalColor = lerp(_FogColor.rgb,(_PaperTexture_var.rgb*_BaseTexture_var.rgb),saturate(((node_4465-distance(i.posWorld.rgb,_WorldSpaceCameraPos))/(node_4465-33.0))));
                 return fixed4(finalColor,1);
             }
@@ -156,7 +156,7 @@ Shader "SeaSerpent/Paper_environmentObject" {
 
              //   float3 finalColor = lerp(_DropShadowColor.rgb,_FogColor.rgb,_FogStrength);
                 
-                float node_4465 = 45.0; // Fog End
+                float node_4465 = 50.0; // Fog End
               //  float3 finalColor = lerp(_FogColor.rgb,(_DropShadowColor.rgb),saturate(((node_4465-distance(i.posWorld.rgb,_WorldSpaceCameraPos))/(node_4465-33.0))));
                 
                 float3 finalColor = lerp(_FogColor.rgb,(_DropShadowColor.rgb), saturate(((node_4465 - distance(i.posWorld.rgb, _WorldSpaceCameraPos)) / (node_4465-33.0))));
