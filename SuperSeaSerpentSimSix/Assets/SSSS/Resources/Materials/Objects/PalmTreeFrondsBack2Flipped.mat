@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ShackRoof
+  m_Name: PalmTreeFrondsBack2Flipped
   m_Shader: {fileID: 4800000, guid: 2e0b05cfd20244f0080cb224f3e9c00c, type: 3}
   m_ShaderKeywords: _FLIPUVS_ON
   m_LightmapFlags: 5
@@ -26,7 +26,7 @@ Material:
         first:
           name: _BaseTexture
         second:
-          m_Texture: {fileID: 2800000, guid: d55cb04678d674ce886d79e3e3467b03, type: 3}
+          m_Texture: {fileID: 2800000, guid: 7071d86f936564cf29ccd0cbaa577886, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -41,10 +41,6 @@ Material:
         first:
           name: _Cutoff
         second: .5
-      data:
-        first:
-          name: _TimeScale
-        second: .910000026
       data:
         first:
           name: _FogStrength
@@ -69,6 +65,10 @@ Material:
         first:
           name: _flipUVs
         second: 1
+      data:
+        first:
+          name: _TimeScale
+        second: .910000026
     m_Colors:
       data:
         first:
