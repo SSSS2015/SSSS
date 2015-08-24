@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: FishMaterial
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 27c351e5844284aa5a787e9a5fc33c3e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -78,6 +78,27 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _PaperTexture
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DiffuseTexture
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _LightingRamp
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -127,6 +148,34 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _paperTextureTiling
+        second: .5
+      data:
+        first:
+          name: _VerticalOffset
+        second: 0
+      data:
+        first:
+          name: _HorizontalOffset
+        second: 0
+      data:
+        first:
+          name: _ShadowOfset
+        second: 0
+      data:
+        first:
+          name: _DropShadowOpacity
+        second: 0
+      data:
+        first:
+          name: _EyeBrightness
+        second: 0
+      data:
+        first:
+          name: _DamageAmount
+        second: 0
     m_Colors:
       data:
         first:
@@ -136,3 +185,15 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: .912373304, b: .20588237, a: 1}
+      data:
+        first:
+          name: _DropShadowColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _EyeColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _DamageColor
+        second: {r: 1, g: .1470588, b: .1470588, a: 1}
