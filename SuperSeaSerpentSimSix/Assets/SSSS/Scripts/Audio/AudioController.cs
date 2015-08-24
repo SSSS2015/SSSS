@@ -12,8 +12,13 @@ public class AudioController : MonoBehaviour {
 
 	//Snapshots
 	public AudioMixerSnapshot TitleSnapshot;
+	public AudioMixerSnapshot PeaceSnapshot;
+	public AudioMixerSnapshot BattleSnapshot;
 	public AudioMixerSnapshot InGameSnapshot;
 	public AudioMixerSnapshot GameOverSnapshot;
+
+	public float BattleSnapshotLength = 16;
+	public float bgmBPM = 124;
 
 	//SoundPlayers
 	public AudioSource sfxPlayer;
@@ -29,6 +34,8 @@ public class AudioController : MonoBehaviour {
 
 	public AudioClip[] roars;
 
+	private float returnToPeaceTime = 0;
+
 	public void Awake()
 	{
 		if(_instance != null)
@@ -40,8 +47,19 @@ public class AudioController : MonoBehaviour {
 		_instance = this;
 	}
 
+	public void Update(){
+		if (returnToPeaceTime != 0 && Time.time >= returnToPeaceTime) {
+			returnToPeaceTime = 0;
+			PeaceSnapshot.TransitionTo(1);
+		}
+	}
+
 	public AudioController(){
 		sfxPlayer = new AudioSource ();
+	}
+
+	private float beatsToSeconds(float beats){
+		return beats * 60/bgmBPM;
 	}
 
 	//such repetition, wow.
@@ -50,10 +68,20 @@ public class AudioController : MonoBehaviour {
 	}
 
 	public void ToInGameSnapshot(float s = 0){
-		InGameSnapshot.TransitionTo (s);
+		ToPeaceSnapshot ();
+	}
+	
+	public void ToPeaceSnapshot(float beats = 0){
+		PeaceSnapshot.TransitionTo (beatsToSeconds(beats));
+	}
+
+	public void ToBattleSnapshot(float beats = 0){
+		BattleSnapshot.TransitionTo (beatsToSeconds(beats));
+		returnToPeaceTime = Time.time + beatsToSeconds(BattleSnapshotLength);
 	}
 
 	public void ToGameOverSnapshot(float s = 0){
+		returnToPeaceTime = 0;
 		GameOverSnapshot.TransitionTo (s);
 	}
 	

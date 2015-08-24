@@ -140,6 +140,7 @@ public class Person : MonoBehaviour, IEatable {
 		eater.GrowSegment();
 		World.Instance.mScoreManager.AddScore(mScoreValue);
 		AudioController.Instance.PlayPickupCrateSfx ();
+		AudioController.Instance.ToBattleSnapshot (1);
 		Destroy(gameObject);
 	}
 }

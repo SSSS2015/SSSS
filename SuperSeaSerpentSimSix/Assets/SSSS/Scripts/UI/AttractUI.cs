@@ -6,6 +6,7 @@ public class AttractUI : MonoBehaviour
     public void OnPlayClicked()
 	{
 		AudioController.Instance.PlayMenuConfirmSfx ();
+		AudioController.Instance.ToInGameSnapshot ();
         FindObjectOfType<Attract>().StartGameClicked();
     }
 

@@ -285,6 +285,7 @@ public class Serpent : SerpentSegment {
 		mHealth -= damageAmount;
 		mDamageAffectTimer = mDamageAffectTime;
 		AudioController.Instance.PlayHurtSfx ();
+		AudioController.Instance.ToBattleSnapshot(1);
 		if(mHealth <= 0)
 		{
 			mHealth = 0;
