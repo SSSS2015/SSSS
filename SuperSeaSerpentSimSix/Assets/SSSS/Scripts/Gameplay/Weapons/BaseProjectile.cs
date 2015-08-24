@@ -10,6 +10,8 @@ public class BaseProjectile : MonoBehaviour, IDamaging {
 	public float mMovementForce = 500.0f;
 	public int mDamagePower = 1;
 
+	public float mUnderWaterDrag = 2.0f;
+
 	public void Awake()
 	{
 		if(mRigidbody == null)
@@ -27,9 +29,10 @@ public class BaseProjectile : MonoBehaviour, IDamaging {
 		{
 			ApplyGravity();
 			transform.LookAt(transform.position + mRigidbody.velocity);
-			if(transform.position.magnitude < World.Instance.SeaLevel - 0.5f)
+			float seaLevel = World.Instance.GetSeaLevel(World.Instance.GetPolarCoordinate(transform.position).y);
+			if(transform.position.magnitude < seaLevel)
 			{
-				mRigidbody.drag = 2f;
+				mRigidbody.drag = mUnderWaterDrag;
 			}
 		}
 	}
@@ -56,12 +59,12 @@ public class BaseProjectile : MonoBehaviour, IDamaging {
 		Destroy(gameObject, mLifeTime*0.5f);
 	}
 
-	public void ApplyDamage(Serpent target)
+	public virtual void ApplyDamage(Serpent target)
 	{
 		target.TakeDamage(mDamagePower);
 	}
 
-	public void OnCollisionEnter(Collision c)
+	public virtual void OnCollisionEnter(Collision c)
 	{
 		mRigidbody.isKinematic = true;
 		mRigidbody.detectCollisions = false;

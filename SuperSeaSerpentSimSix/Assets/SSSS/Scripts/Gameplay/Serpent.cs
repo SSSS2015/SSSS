@@ -56,6 +56,7 @@ public class Serpent : SerpentSegment {
 		{
 			mAnimator = GetComponentInChildren<Animator>();
 		}
+		mSerpent = this;
 	}
 
 	public void Start()

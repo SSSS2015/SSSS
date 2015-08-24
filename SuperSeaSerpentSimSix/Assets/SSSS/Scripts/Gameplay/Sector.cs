@@ -45,14 +45,7 @@ public class Sector
 			Boat boat = boatObj.GetComponent<Boat>();
 			if(boat != null)
 			{
-				int numPeople = Random.Range(boat.mMinPeople, boat.mMaxPeople+1);
-				for(int p = 0; p < numPeople; ++p)
-				{
-					int leftOrRight = (Random.value > 0.5f)?1:-1;
-					float range = boat.mBuoyancy.mEndsOffset;
-					Vector3 personPos = boat.transform.position + boat.transform.right*Random.Range(-range,range) + boat.transform.up*0.5f;
-					SpawnEntity(mWorld.mPersonPrefab, personPos, boat.transform.up, Vector3.forward*leftOrRight); 
-				}
+				boat.SpawnPeople(this);
 			}
 		}
 	}

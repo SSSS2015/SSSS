@@ -22,7 +22,6 @@ public class World : MonoBehaviour {
 	
 	public GameObject mFishPrefab;
 	public GameObject mBoatPrefab;
-	public GameObject mPersonPrefab;
 	public GameObject mSplashPrefab;
 
 	public float mMinSplashSpeed = 1.0f;

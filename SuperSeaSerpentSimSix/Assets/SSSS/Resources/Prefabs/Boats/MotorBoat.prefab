@@ -175,8 +175,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mBuoyancy: {fileID: 0}
   mMinPeople: 1
-  mMaxPeople: 3
+  mMaxPeople: 2
   mCapsizeTime: 2
+  mPeoplePrefabs:
+  - {fileID: 195902, guid: d8da261d777f0e34db31e748ee33f595, type: 2}
+  - {fileID: 195902, guid: 89bbc0e77bab8d6448630765434d1f96, type: 2}
+  - {fileID: 195902, guid: 89bbc0e77bab8d6448630765434d1f96, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -185,9 +189,21 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: mPeoplePrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mMaxPeople
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mPeoplePrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 195902, guid: d8da261d777f0e34db31e748ee33f595, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 130620}
