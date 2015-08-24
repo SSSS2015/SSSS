@@ -76,7 +76,6 @@ public class Serpent : SerpentSegment {
 	protected SerpentSegment CreateSegment(GameObject prefab, GameObject attachTarget)
 	{
 		GameObject segmentObj = Instantiate(prefab, attachTarget.transform.position, attachTarget.transform.rotation) as GameObject;
-		segmentObj.transform.parent = World.Instance.transform;
 		SerpentSegment segment = segmentObj.GetComponent<SerpentSegment>();
 		segment.mSerpent = this;
 		segment.AttachTo(attachTarget);

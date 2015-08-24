@@ -95,6 +95,9 @@ public class World : MonoBehaviour {
 	public int GetDifficultyLevel()
 	{
 		int newSegments = mSerpent.Segments.Count - mSerpent.mNumInitialSegments;
+        if (newSegments < 0)
+            newSegments = 0;
+
 		return Mathf.Min(newSegments/mSegmentsPerDifficultyLevel, mDifficultyStages.Length-1);
 	}
 
