@@ -35,12 +35,6 @@ public class World : MonoBehaviour {
 
 	public void Awake()
 	{
-		if(sInstance != null)
-		{
-			Destroy(this);
-			return;
-		}
-
 		sInstance = this;
 
 		mSectorSize = (Mathf.PI*2.0f)/mNumSectors;

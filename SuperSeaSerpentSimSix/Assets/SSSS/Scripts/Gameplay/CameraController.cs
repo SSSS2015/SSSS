@@ -21,12 +21,6 @@ public class CameraController : MonoBehaviour {
 
 	public void Awake()
 	{
-		if(sInstance != null)
-		{
-			Destroy(this);
-			return;
-		}
-
 		sInstance = this;
 	}
 
