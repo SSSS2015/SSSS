@@ -24,17 +24,17 @@ public class MainUI : MonoBehaviour {
 		if(mWorld.mSerpent.Health != mDisplayHealth)
 		{
 			mDisplayHealth = mWorld.mSerpent.Health;
-			mHealthText.text = string.Format("Health: {0}/{1}", mDisplayHealth, mWorld.mSerpent.MaxHealth);
+			mHealthText.text = string.Format("{0}/{1}", mDisplayHealth, mWorld.mSerpent.MaxHealth);
 		}
 		if(mWorld.mScoreManager.Score != mScoreDisplay)
 		{
 			mScoreDisplay = mWorld.mScoreManager.Score;
-			mScoreText.text = string.Format("Score: {0}", mScoreDisplay);
+			mScoreText.text = string.Format("{0}", mScoreDisplay);
 		}
 		if(mWorld.mSerpent.NextGrowthCounter != mDisplayNextSegment)
 		{
 			mDisplayNextSegment = mWorld.mSerpent.NextGrowthCounter;
-			mNexSegmentText.text = string.Format("Next Segment: {0}/{1}", mWorld.mSerpent.NextGrowthCounter, mWorld.mSerpent.NextGrowthNeed);
+			mNexSegmentText.text = string.Format("{0}/{1}", mWorld.mSerpent.NextGrowthCounter, mWorld.mSerpent.NextGrowthNeed);
 		}
 	}
 }

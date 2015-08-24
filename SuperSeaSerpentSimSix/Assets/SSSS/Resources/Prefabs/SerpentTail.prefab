@@ -25,7 +25,7 @@ GameObject:
   - 4: {fileID: 477290}
   - 33: {fileID: 3307064}
   - 23: {fileID: 2313230}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Serpent_tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,6 +299,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_AngularDrag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

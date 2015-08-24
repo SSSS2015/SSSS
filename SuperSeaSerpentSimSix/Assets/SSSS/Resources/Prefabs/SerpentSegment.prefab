@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 461298}
   - 33: {fileID: 3308334}
   - 23: {fileID: 2357766}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Serpent_segment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,6 +399,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Mass
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

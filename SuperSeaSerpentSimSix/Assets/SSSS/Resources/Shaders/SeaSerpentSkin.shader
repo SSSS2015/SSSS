@@ -16,10 +16,9 @@ Shader "SeaSerpent/SeaSerpentSkin" {
         _DamageColor ("DamageColor", Color) = (1,0.1470588,0.1470588,1)
         _DamageAmount ("DamageAmount", Range(0, 1)) = 0
         
-        _VerticalOffset ("VerticalOffset", Range(0, 3)) = 0
-        _HorizontalOffset ("HorizontalOffset", Range(0, 3)) = 0
+
+
         _ShadowOfset ("ShadowOfset", Range(0, 0.5)) = 0
-        _DropShadowOpacity ("DropShadow Opacity", Range(0, 1)) = 0
         _DropShadowColor ("DropShadowColor", Color) = (0.5,0.5,0.5,1) 
         
         

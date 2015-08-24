@@ -4,6 +4,7 @@ using System.Collections;
 public class SerpentSegment : BaseSeaCreature {
 	public Joint mJoint;
 	public Serpent mSerpent;
+	public Renderer mRenderer;
 
 	public override void Awake()
 	{
@@ -11,6 +12,10 @@ public class SerpentSegment : BaseSeaCreature {
 		if(mJoint == null)
 		{
 			mJoint = GetComponent<Joint>();
+		}
+		if(mRenderer == null)
+		{
+			mRenderer = GetComponentInChildren<Renderer>();
 		}
 	}
 

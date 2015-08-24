@@ -2,16 +2,6 @@
 using System.Collections;
 
 public class Person : MonoBehaviour, IEatable {
-	private static int sCachedSerpentMask = 0;
-	public static int kSerpentMask { get {
-			if(sCachedSerpentMask == 0)
-			{
-				sCachedSerpentMask = LayerMask.GetMask("Serpent");
-			}
-			return sCachedSerpentMask;
-		}
-	}
-
 	public float mAttackRange = 20.0f;
 
 	public float mTellOffset = 0.3f;
@@ -36,6 +26,8 @@ public class Person : MonoBehaviour, IEatable {
 
 	public const float mDrownTime = 1.0f;
 	protected float mDrownTimer = 0.0f;
+
+	public int mScoreValue = 100;
 
 	public void Awake()
 	{
@@ -146,7 +138,7 @@ public class Person : MonoBehaviour, IEatable {
 	public void BeEaten(Serpent eater)
 	{
 		eater.GrowSegment();
-		World.Instance.mScoreManager.AddScore(100);
+		World.Instance.mScoreManager.AddScore(mScoreValue);
 		AudioController.Instance.PlayPickupCrateSfx ();
 		Destroy(gameObject);
 	}
