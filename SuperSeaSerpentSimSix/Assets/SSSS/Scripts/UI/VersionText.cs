@@ -4,7 +4,7 @@ using System.Collections;
 
 public class VersionText : MonoBehaviour
 {
-    public const string Version = "v1.001";
+    public const string Version = "v1.002";
 
 	void Start ()
     {
