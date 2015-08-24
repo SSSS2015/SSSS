@@ -28,6 +28,9 @@ public class SpringGrid : MonoBehaviour
     public float kSpringForceOrigin = .0001f;
     public float kDamping = 0.99f;
 
+    public float kMaterialVelScale = 10.0f;
+    public float kMaterialPosScale = 0.15f;
+
     public const float kInnerRadius = 75.0f;
     public const float kOuterRadius = 100.0f;
     public const float kThetaDelta = 20.0f;
@@ -40,14 +43,16 @@ public class SpringGrid : MonoBehaviour
     public SpringNode[] Nodes;
 
     [NonSerialized] private Vector3[] TempPositions;
+    [NonSerialized] private Color[] TempColors;
     [NonSerialized] private int[] MeshIndices;
 
     private Mesh MyMesh;
 
-    public void Initialize(int[] meshIndices, Vector3[] tempPositions)
+    public void Initialize(int[] meshIndices, Vector3[] tempPositions, Color[] tempColors)
     {
         MeshIndices = meshIndices;
         TempPositions = tempPositions;
+        TempColors = tempColors;
 
         MeshFilter filter = GetComponent<MeshFilter>();
         MyMesh = filter.mesh; // Clones mesh from sharedMesh
@@ -58,14 +63,6 @@ public class SpringGrid : MonoBehaviour
     void Update()
     {
         SimulateSpringForces(Time.deltaTime);
-    }
-
-    [UsedImplicitly]
-    void LateUpdate()
-    {
-        ResetNodePositions();
-        if(MyMesh != null)
-            TransferToMesh(MyMesh);
     }
 
     public static int GridIdx(int x, int y)
@@ -248,7 +245,15 @@ public class SpringGrid : MonoBehaviour
 
     public void ResetNodePositions()
     {
-        // TODO: Fix stitching
+        for (int i = 0; i < kGridHeight * kGridWidth; ++i)
+        {
+            Nodes[i].Pos += Nodes[i].Velocity;
+            Nodes[i].Velocity *= kDamping;
+        }
+    }
+
+    public void UpdateSeams()
+    {
         if (RightGrid != null)
         {
             // Stitch right line of this as a copy of the left line of the adjacent mesh
@@ -260,26 +265,35 @@ public class SpringGrid : MonoBehaviour
                 node.Velocity = otherNode.Velocity;
             }
         }
-
-        for (int i = 0; i < kGridHeight * kGridWidth; ++i)
-        {
-            Nodes[i].Pos += Nodes[i].Velocity;
-            Nodes[i].Velocity *= kDamping;
-        }
     }
 
-    public void TransferToMesh(Mesh m)
+    public void TransferToMesh()
+    {
+        if(MyMesh != null)
+            TransferToMesh(MyMesh);
+    }
+
+    private void TransferToMesh(Mesh m)
     {
         for (int i = 0; i < kGridHeight * kGridWidth; ++i)
         {
-            Vector3 pos = Nodes[i].Pos;
-            //pos = transform.InverseTransformPoint(pos);
-            pos.z = 0;
+            int index = MeshIndices[i];
 
-            TempPositions[MeshIndices[i]] = pos;
+            Vector3 pos = Nodes[i].Pos;
+            Vector3 diff = pos - Nodes[i].Origin;
+            Vector3 vel = Nodes[i].Velocity;
+
+            float dx = Mathf.Clamp01(diff.x * kMaterialPosScale + 0.5f);
+            float dy = Mathf.Clamp01(diff.y * kMaterialPosScale + 0.5f);
+            float vx = Mathf.Clamp01(vel.x * kMaterialVelScale + 0.5f);
+            float vy = Mathf.Clamp01(vel.y * kMaterialVelScale + 0.5f);
+
+            TempColors[index] = new Color(dx, dy, vx, vy);
+            TempPositions[index] = new Vector3(pos.x, pos.y, 0);
         }
 
         m.vertices = TempPositions;
+        m.colors = TempColors;
         m.RecalculateBounds();
     }
 

@@ -30,6 +30,7 @@ public class WaveManager : MonoBehaviour
 
         // Allocate some shared temporary space
         Vector3[] tempPositions = new Vector3[SpringGrid.kGridHeight * SpringGrid.kGridWidth];
+        Color[] tempColors = new Color[SpringGrid.kGridHeight * SpringGrid.kGridWidth];
 
         // Spawn the grids
         Grids = new SpringGrid[kNumSegments];
@@ -39,7 +40,7 @@ public class WaveManager : MonoBehaviour
             gridObj.transform.SetParent(transform, false);
             SpringGrid grid = gridObj.GetComponent<SpringGrid>();
             grid.Theta = i * SpringGrid.kThetaDelta;
-            grid.Initialize(MeshIndices, tempPositions);
+            grid.Initialize(MeshIndices, tempPositions, tempColors);
 
             Grids[i] = grid;
         }
@@ -80,6 +81,16 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < kNumSegments; ++i)
         {
             Grids[i].ResetNodePositions();
+        }
+
+        for(int i = 0; i < kNumSegments; ++i)
+        {
+            Grids[i].UpdateSeams();
+        }
+
+        for(int i = 0; i < kNumSegments; ++i)
+        {
+            Grids[i].TransferToMesh();
         }
 	}
 }

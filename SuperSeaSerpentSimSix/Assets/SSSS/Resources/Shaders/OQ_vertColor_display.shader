@@ -50,8 +50,10 @@ Shader "OQ/vertColor_display" {
             float4 frag(VertexOutput i) : COLOR {
 /////// Vectors:
 ////// Lighting:
-                float3 finalColor = ((i.vertexColor.r*_RedVertexChannel*float3(1,0.8,0.8))+(i.vertexColor.g*_GreenVertexChannel*float3(0.8,1,0.8))+(i.vertexColor.b*_BlueVertexChannel*float3(0.8,0.8,1))+(i.vertexColor.a*_AlphaVertexChannel));
-                return fixed4(finalColor,1);
+				return fixed4(i.vertexColor.xyy, 1);
+
+                //float3 finalColor = ((i.vertexColor.r*_RedVertexChannel*float3(1,0.8,0.8))+(i.vertexColor.g*_GreenVertexChannel*float3(0.8,1,0.8))+(i.vertexColor.b*_BlueVertexChannel*float3(0.8,0.8,1))+(i.vertexColor.a*_AlphaVertexChannel));
+                //return fixed4(finalColor,1);
             }
             ENDCG
         }
