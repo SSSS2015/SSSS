@@ -116,6 +116,8 @@ MonoBehaviour:
   - {fileID: 132270, guid: 83db00f9434134bfe9c5858272c2f7bf, type: 2}
   - {fileID: 111370, guid: cf64ca8f0e7c64cc489c62e35670e932, type: 2}
   - {fileID: 118310, guid: 4169ef548c6a748e1ae62033ec93b244, type: 2}
+  - {fileID: 170160, guid: 520adb370b37b4fba994635dd86b420e, type: 2}
+  - {fileID: 159506, guid: 3bc6cc2aabffb480e8887fb97ab82f60, type: 2}
   mIslandZ: 11
   mNumIslandsPerSector: 4
   mClouds:
@@ -141,7 +143,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: mIslands.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mIslands.Array.data[4]
+      value: 
+      objectReference: {fileID: 170160, guid: 520adb370b37b4fba994635dd86b420e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: mIslands.Array.data[5]
+      value: 
+      objectReference: {fileID: 159506, guid: 3bc6cc2aabffb480e8887fb97ab82f60, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 106738}
