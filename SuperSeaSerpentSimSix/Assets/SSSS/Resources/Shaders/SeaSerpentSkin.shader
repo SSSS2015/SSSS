@@ -30,7 +30,7 @@ Shader "SeaSerpent/SeaSerpentSkin" {
             "RenderType"="Opaque"
             }
             ZTest Always
-          Offset 1, 200            
+          Offset 1, 700            
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag

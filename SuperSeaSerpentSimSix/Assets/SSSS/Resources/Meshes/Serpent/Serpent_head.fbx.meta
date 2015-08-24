@@ -6,9 +6,39 @@ ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Head
+    100004: Mesh
+    100006: Skeleton_Joint
+    100008: Skeleton_Joint (2)
+    100010: Skeleton_Joint (3)
+    100012: Skeleton_Joint (4)
+    100014: Serpenthead_chin
+    100016: SerpentHead_jaw
+    100018: SerpentHead_nose
+    100020: SerpentHead_root
+    100022: HeadBones
+    100024: HeadBones (2)
+    100026: HeadBones (3)
+    100028: HeadBones (4)
     400000: //RootNode
+    400002: Head
+    400004: Mesh
+    400006: Skeleton_Joint
+    400008: Skeleton_Joint (2)
+    400010: Skeleton_Joint (3)
+    400012: Skeleton_Joint (4)
+    400014: Serpenthead_chin
+    400016: SerpentHead_jaw
+    400018: SerpentHead_nose
+    400020: SerpentHead_root
+    400022: HeadBones
+    400024: HeadBones (2)
+    400026: HeadBones (3)
+    400028: HeadBones (4)
     2300000: //RootNode
+    2300002: Head
     3300000: //RootNode
+    3300002: Head
     4300000: Head
   materials:
     importMaterials: 1
