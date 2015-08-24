@@ -14,6 +14,7 @@ public class Serpent : SerpentSegment {
 
 	public GameObject mSegmentPrefab;
 	public GameObject mTailPrefab;
+	public GameObject mSkullPrefab;
 
 	protected Vector3 mDesiredPos;
 	public float mReentryInputBlockerTime = 0.5f;
@@ -119,6 +120,8 @@ public class Serpent : SerpentSegment {
 						mNextGrowthCounter = 0;
 						mNextGrowthNeed = mNextGrowthNeed*2;
 					}
+					
+					SpawnSkull();
 				}
 				Heal(growth.mHealAmount);
 				completedGrowths.Add(growth);
@@ -142,6 +145,16 @@ public class Serpent : SerpentSegment {
 				growth.mCurrentSegment.Next.Value.mModel.transform.localScale = Vector3.Lerp(Vector3.one, kSegmentGrowthScale, t);
 			}
 		}
+	}
+
+	public void SpawnSkull()
+	{
+		LinkedListNode<SerpentSegment> tail = mSegments.Last;
+		Vector3 up = Random.onUnitSphere;
+		up.Normalize();
+		Quaternion rot = Quaternion.LookRotation(Vector3.forward, up);
+		GameObject skullObj = Instantiate(mSkullPrefab, tail.Value.transform.position, rot) as GameObject;
+		Destroy(skullObj, 10.0f);
 	}
 
 	[ContextMenu("Add Segment")]

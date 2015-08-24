@@ -83,8 +83,8 @@ Material:
         first:
           name: _PaperTexture
         second:
-          m_Texture: {fileID: 2800000, guid: 764c5d7b6829a44a797775b1987270d2, type: 3}
-          m_Scale: {x: 2, y: 2}
+          m_Texture: {fileID: 2800000, guid: 7caac3fcfb8a34f778676aee3e8cf971, type: 3}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
