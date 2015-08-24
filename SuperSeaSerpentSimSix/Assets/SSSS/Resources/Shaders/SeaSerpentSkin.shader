@@ -16,13 +16,69 @@ Shader "SeaSerpent/SeaSerpentSkin" {
         _DamageColor ("DamageColor", Color) = (1,0.1470588,0.1470588,1)
         _DamageAmount ("DamageAmount", Range(0, 1)) = 0
         
+        _VerticalOffset ("VerticalOffset", Range(0, 3)) = 0
+        _HorizontalOffset ("HorizontalOffset", Range(0, 3)) = 0
+        _ShadowOfset ("ShadowOfset", Range(0, 0.5)) = 0
         _DropShadowOpacity ("DropShadow Opacity", Range(0, 1)) = 0
-        _DropShadowColor ("DropShadowColor", Color) = (0.5,0.5,0.5,1)        
+        _DropShadowColor ("DropShadowColor", Color) = (0.5,0.5,0.5,1) 
+        
+        
+        
+        
+        
     }
     SubShader {
         Tags {
             "RenderType"="Opaque"
         }
+        
+        
+        Pass {
+            Name "dropshadow"
+            Tags {
+                "LightMode"="ForwardBase"
+                            "Queue"="Geometry+100"
+            "RenderType"="Opaque"
+            }
+            ZTest Always
+         Offset 1, 500
+                     
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #define UNITY_PASS_FORWARDBASE
+            #include "UnityCG.cginc"
+            #pragma multi_compile_fwdbase_fullshadows
+            #pragma exclude_renderers d3d11_9x xbox360 xboxone ps3 ps4 psp2 
+            #pragma target 3.0
+            uniform float _ShadowOfset;
+            uniform float4 _DropShadowColor;
+            struct VertexInput {
+                float4 vertex : POSITION;
+            };
+            struct VertexOutput {
+                float4 pos : SV_POSITION;
+            };
+            VertexOutput vert (VertexInput v) {
+                VertexOutput o = (VertexOutput)0;
+                float2 node_4392 = mul( UNITY_MATRIX_V, float4(float3(-1,0.5,0),0) ).xyz.rgb.rg;
+                v.vertex.xyz += mul( float4((float3(node_4392.r,node_4392.g,0.0)*_ShadowOfset),0), UNITY_MATRIX_MV ).xyz.rgb;
+                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+                return o;
+            }
+            float4 frag(VertexOutput i) : COLOR {
+/////// Vectors:
+////// Lighting:
+////// Emissive:
+                float3 emissive = _DropShadowColor.rgb;
+                float3 finalColor = emissive;
+                return fixed4(finalColor,1);
+            }
+            ENDCG
+        }        
+        
+        
+        
         Pass {
             Name "FORWARD"
             Tags {
