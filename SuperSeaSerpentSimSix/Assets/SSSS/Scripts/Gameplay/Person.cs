@@ -34,6 +34,9 @@ public class Person : MonoBehaviour, IEatable {
 
 	protected bool mIsDrowning = false;
 
+	public const float mDrownTime = 1.0f;
+	protected float mDrownTimer = 0.0f;
+
 	public void Awake()
 	{
 		if(mBuoyancy == null)
@@ -53,10 +56,16 @@ public class Person : MonoBehaviour, IEatable {
 
 		if(!mBuoyancy.IsAboveWater())
 		{
-			mIsDrowning = true;
-			DropProjectile();
-			return;
+			mDrownTimer += Time.deltaTime;
+			if(mDrownTimer >= mDrownTime)
+			{
+				mIsDrowning = true;
+				DropProjectile();
+				return;
+			}
 		}
+
+		mDrownTimer = 0.0f;
 		
 		Serpent serpent = World.Instance.mSerpent;
 		if(Vector3.SqrMagnitude(serpent.transform.position - transform.position) < mAttackRange*mAttackRange && serpent.IsAboveWater())

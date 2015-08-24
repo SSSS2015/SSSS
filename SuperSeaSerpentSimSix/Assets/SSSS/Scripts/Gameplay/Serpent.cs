@@ -39,6 +39,8 @@ public class Serpent : SerpentSegment {
 	protected int mNextGrowthCounter = 0;
 	public int NextGrowthCounter { get { return mNextGrowthCounter; } }
 
+	public Animator mAnimator;
+
 	public class SegmentGrowth
 	{
 		public LinkedListNode<SerpentSegment> mCurrentSegment;
@@ -46,6 +48,15 @@ public class Serpent : SerpentSegment {
 		public int mHealAmount;
 	}
 	public HashSet<SegmentGrowth> mSegmentGrowths = new HashSet<SegmentGrowth>();
+
+	public override void Awake ()
+	{
+		base.Awake ();
+		if(mAnimator == null)
+		{
+			mAnimator = GetComponentInChildren<Animator>();
+		}
+	}
 
 	public void Start()
 	{
@@ -261,6 +272,7 @@ public class Serpent : SerpentSegment {
 		IEatable eatable = c.collider.GetComponentInParent(typeof(IEatable)) as IEatable;
 		if(eatable != null)
 		{
+			mAnimator.SetTrigger("Bite");
 			eatable.BeEaten(this);
 		}
 	}
