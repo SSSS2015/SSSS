@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Serpent : SerpentSegment {
 
-	public static readonly Vector3 kSegmentGrowthScale = new Vector3(1.75f, 1.75f, 1.75f);
+	public static readonly Vector3 kSegmentGrowthScale = new Vector3(1.5f, 1.5f, 1.5f);
 	public float mMaxSpeed = 10.0f;
 	public float mSpeedMultiplier = 2.0f;
 	public float mSpeedBonusPerSegment = 0.25f;
@@ -215,21 +215,17 @@ public class Serpent : SerpentSegment {
 		UpdateLooking();
 	}
 
+	protected float mZUndulationTimer = 0;
 	protected void UpdateLooking()
 	{
+		mZUndulationTimer += Time.deltaTime;
 		if(mRigidbody.velocity.sqrMagnitude > 0)
 		{
-			transform.LookAt(mRigidbody.position+mRigidbody.velocity, transform.position.normalized);
-			/*
-			Vector3 lookDir = mRigidbody.position+mRigidbody.velocity;
-			lookDir -= transform.position;
-			lookDir.Normalize();
-			float deltaAngle = Vector3.Angle(transform.forward, lookDir);
-			
-			Vector3 cross = Vector3.Cross(Camera.main.transform.forward, transform.forward);
-			float rotationDir = Mathf.Sign(Vector3.Dot(cross, lookDir));
-			transform.Rotate(new Vector3(deltaAngle*rotationDir,0,0));
-			*/
+			Vector3 zUndulationFactor = Vector3.forward*Mathf.Sin(Mathf.PI*4.0f*mZUndulationTimer)*0.25f;
+			Vector3 rotateLook = Vector3.back*2;// * (1.0f-Mathf.Clamp01(mRigidbody.velocity.magnitude));
+			transform.LookAt(mRigidbody.position+mRigidbody.velocity + zUndulationFactor + rotateLook, transform.position.normalized);
+			//Debug.Log(rotateLook);
+
 		}
 	}
 	
